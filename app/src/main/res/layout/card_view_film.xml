@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardUseCompatPadding="true"
+    android:background="@color/grey_background_fragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color">
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageViewPoster"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:src="@drawable/example_poster"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:minHeight="250dp"-->
+<!--            android:contentDescription="@null"-->
+<!--            android:scaleType="fitXY"/>-->
+
+        <ImageView
+            android:id="@+id/imageViewPoster"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintDimensionRatio="1:1.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/example_poster" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_mask"
+            app:layout_constraintBottom_toBottomOf="@id/dicription_poster"
+            app:layout_constraintEnd_toEndOf="@id/dicription_poster"
+            app:layout_constraintStart_toStartOf="@id/dicription_poster"
+            app:layout_constraintTop_toTopOf="@id/imageViewPoster" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dicription_poster"
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:background="@drawable/ic_mask"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:cardBackgroundColor="@color/background_card_color"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="@id/constraint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPoster"
+            app:layout_constraintVertical_bias="1">
+
+            <TextView
+                android:id="@+id/textViewRating"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_marginStart="367dp"
+                android:layout_marginEnd="368dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/gray_dark"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewPoster"
+                app:layout_constraintEnd_toEndOf="@id/imageViewPoster"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="1+1" />
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

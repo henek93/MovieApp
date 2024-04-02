@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -52,4 +53,43 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
+
+    implementation("io.reactivex:rxjava:1.1.6")
+    implementation("io.reactivex:rxandroid:1.2.1")
+    implementation("com.squareup.retrofit2:adapter-rxjava:2.1.0")
+
+    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //Architecture
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2")
+    kapt("androidx.lifecycle:lifecycle-compiler:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:2.6.2")
+
+    //Room
+    val room_version = "2.5.0"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-rxjava3:$room_version")
+
+    //Picasso
+    implementation("com.squareup.picasso:picasso:2.8")
+
+    //Dagger
+    implementation("com.google.dagger:dagger:2.28.3")
+    kapt("com.google.dagger:dagger-compiler:2.28.3")
+
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 }

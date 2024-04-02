@@ -1,13 +1,13 @@
-package com.example.movieapp.ui.profile
+package com.example.movieapp.presentation.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ProfileViewModel : ViewModel() {
+class SearchViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is profile Fragment"
+        value = "This is search Fragment"
     }
     val text: LiveData<String> = _text
 }

@@ -8,4 +8,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
 
+    <!-- fragment main -->
+    <string name="top_new_films">Топ новых фильмов</string>
+    <string name="adventures">Приключенчения</string>
+    <string name="love_story">Романтические</string>
+    <string name="best_comedy">Лучшие комдии</string>
 </resources>
