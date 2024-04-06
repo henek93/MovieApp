@@ -11,9 +11,6 @@ import com.example.movieapp.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,17 +18,32 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(MainViewModel::class.java)
+
+        val mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        mainViewModel.getListMovie()
 
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        mainViewModel.listMovie.observe(viewLifecycleOwner){
+            binding.mainText.text = it[0].name
+        }
+
         return root
+    }
+
+
+    private fun observeViewModel(){
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+        fun newInstanceMainFragment(): MainFragment = MainFragment()
     }
 }
