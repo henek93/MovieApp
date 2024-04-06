@@ -13,7 +13,7 @@ interface MovieRepository {
 
     suspend fun getRaiting(movieId: Int): Raiting
 
-    fun getListMovie(): LiveData<Movie>
+    suspend fun getListMovie(page: Int, listOld: List<Movie>?): List<Movie>
 
     suspend fun makeLove()
 }

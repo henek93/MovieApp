@@ -9,9 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.movieapp.databinding.FragmentProfileBinding
 
+import com.example.movieapp.presentation.ui.main.MainFragment
+
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
+
+//    private val  notificationsViewModel by lazy {
+//        ViewModelProvider(this)[ProfileViewModel::class.java]
+//    }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,21 +28,26 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
-
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+//        val textView: TextView = binding.textNotifications
+//
+//        notificationsViewModel.getListMovie()
+//
+//        notificationsViewModel.listMovie.observe(viewLifecycleOwner){
+//            textView.text = it.get(0).name
+//        }
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+
+        fun newInstanceProfileFragment(): Fragment = ProfileFragment()
     }
 }

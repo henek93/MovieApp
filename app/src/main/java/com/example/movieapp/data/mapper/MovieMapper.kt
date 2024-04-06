@@ -8,7 +8,7 @@ import com.example.movieappkotlin.pojo.PosterDto
 import com.example.movieappkotlin.pojo.RatinggDto
 import javax.inject.Inject
 
-class MovieMapper @Inject constructor(){
+class MovieMapper{
 
     fun mapMovieDtoMovie(movieDto: MovieDto) = Movie(
         id = movieDto.id,
