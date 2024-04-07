@@ -6,7 +6,7 @@
     android:layout_width="130dp"
     android:layout_height="190dp"
     android:layout_margin="6dp"
-    android:background="@drawable/shape_rounded_stroke_rect_background_dark_blue"
+    android:background="@drawable/shape_orange"
     android:elevation="@dimen/cardview_default_elevation"
     app:layout_constrainedWidth="true">
 
@@ -40,7 +40,7 @@
         android:layout_width="@dimen/movies_list_allowed_age_space"
         android:layout_height="@dimen/movies_list_allowed_age_space"
         android:layout_margin="@dimen/spacing_2x"
-        android:background="@drawable/shape_heavy_rounded_rect_background_dark_blue"
+        android:background="@drawable/shape_green"
         android:gravity="center"
         android:textColor="@color/color_white"
         android:textSize="@dimen/text_size_body"
