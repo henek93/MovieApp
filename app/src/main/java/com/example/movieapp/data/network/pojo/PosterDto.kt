@@ -5,5 +5,5 @@ import java.io.Serializable
 
 data class PosterDto(
     @SerializedName("url")
-    val url: String
+    val url: String?
 ): Serializable

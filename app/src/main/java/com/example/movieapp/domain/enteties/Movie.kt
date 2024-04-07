@@ -12,7 +12,17 @@ data class Movie(
     val genres: List<Genre>,
     val countries: List<Countries>,
     val actors: List<Actor>,
-    val similarMovies: List<Movie>,
+    val similarMovies: List<SimilarMovie>,
     val backdrop: Backdrop,
     val logo: Logo
-)
+){
+
+    companion object{
+
+        const val UNKNOWN_NAME = "Неизвестно название фильма"
+        const val UNKNOWN_DESCRIPTION = "Нет описания"
+        const val UNKNOWN_PG_RATING = -10
+        const val UNKNOWN_TYPE = "Нет типа"
+    }
+
+}
