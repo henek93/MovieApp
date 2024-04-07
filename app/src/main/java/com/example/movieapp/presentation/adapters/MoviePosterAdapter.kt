@@ -39,11 +39,7 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
             pgText.text = movie.rating.toString()
             pgText.setBackgroundResource(resId)
 
-
-            if (urlPoster == "")
-                poster.setImageResource(R.drawable.example_poster)
-            else
-                Picasso.get().load(urlPoster).resize(250, 250).into(poster)
+            Picasso.get().load(urlPoster).resize(250, 250).into(poster)
 
             filmNameText.text = movie.name
         }
