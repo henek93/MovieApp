@@ -2,12 +2,8 @@ package com.example.movieapp.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.ListAdapter
 import com.example.movieapp.R
-import com.example.movieapp.databinding.ViewHolderMovieBinding
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.presentation.callBacks.MoviePosterDiffCallback
 import com.example.movieapp.presentation.viewHolders.MoviePosterViewHolder
@@ -25,7 +21,7 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
     override fun onBindViewHolder(holder: MoviePosterViewHolder, position: Int) {
         val movie = getItem(position)
 
-        val raiting = movie.raiting.raiting
+        val raiting = movie.rating.raiting
         var resId: Int
 
         if (raiting > 9.5){
@@ -40,7 +36,7 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
         val urlPoster = movie.poster.url
 
         with(holder) {
-            pgText.text = movie.raiting.toString()
+            pgText.text = movie.rating.toString()
             pgText.setBackgroundResource(resId)
 
 
@@ -57,9 +53,9 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
 
     override fun getItemViewType(position: Int): Int {
         val item = getItem(position)
-        return if (item.raiting.raiting >= 9.5) {
+        return if (item.rating.raiting >= 9.5) {
             GREEN_RAITING
-         } else if(item.raiting.raiting >= 8.0){
+         } else if(item.rating.raiting >= 8.0){
              ORANGE_RAITING
          }else{
              RED_RAITING

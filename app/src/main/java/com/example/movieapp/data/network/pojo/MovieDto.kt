@@ -1,14 +1,16 @@
 package com.example.movieappkotlin.pojo
 
-import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.movieapp.data.network.pojo.ActorDto
+import com.example.movieapp.data.network.pojo.BackdropDto
+import com.example.movieapp.data.network.pojo.CountriesDto
+import com.example.movieapp.data.network.pojo.GenreDto
+import com.example.movieapp.data.network.pojo.LogoDto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity(tableName = "Favourit_movies")
 data class MovieDto(
-
     @SerializedName("id")
     @Expose
     @PrimaryKey
@@ -25,11 +27,46 @@ data class MovieDto(
     @SerializedName("description")
     @Expose
     val description: String? = null,
+
     @SerializedName("year")
     @Expose
     val year: Int? = null,
 
     @SerializedName("poster")
     @Expose
-    val poster: PosterDto? = null
-    ): Serializable
+    val poster: PosterDto? = null,
+
+    @SerializedName("ageRaiting")
+    @Expose
+    val pgRating: Int? = null,
+
+    @SerializedName("type")
+    @Expose
+    val type: String? = null,
+
+    @SerializedName("type")
+    @Expose
+    val genres: List<GenreDto>? = null,
+
+    @SerializedName("type")
+    @Expose
+    val countries: List<CountriesDto>? = null,
+
+    @SerializedName("type")
+    @Expose
+    val actors: List<ActorDto>? = null,
+
+    @SerializedName("type")
+    @Expose
+    val similarMovies: List<MovieDto>? = null,
+
+    @SerializedName("backdrop")
+    @Expose
+    val backdrop: BackdropDto? = null,
+
+    @SerializedName("type")
+    @Expose
+    val logo: LogoDto? = null
+): Serializable
+
+

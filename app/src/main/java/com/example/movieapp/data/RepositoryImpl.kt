@@ -1,21 +1,12 @@
 package com.example.movieapp.data
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.movieapp.data.mapper.MovieMapper
 import com.example.movieapp.data.network.api.ApiFactory
-import com.example.movieapp.data.network.api.ApiService
 import com.example.movieapp.domain.MovieRepository
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.Poster
-import com.example.movieapp.domain.enteties.Raiting
-import com.example.movieappkotlin.pojo.MovieDto
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.example.movieapp.domain.enteties.Rating
 import java.lang.RuntimeException
-import javax.inject.Inject
 
 class RepositoryImpl: MovieRepository {
 
@@ -31,7 +22,7 @@ class RepositoryImpl: MovieRepository {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getRaiting(movieId: Int): Raiting {
+    override suspend fun getRaiting(movieId: Int): Rating {
         TODO("Not yet implemented")
     }
 
