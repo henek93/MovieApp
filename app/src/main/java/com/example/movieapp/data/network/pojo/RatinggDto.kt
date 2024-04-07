@@ -5,5 +5,5 @@ import java.io.Serializable
 
 data class RatinggDto(
     @SerializedName("kp")
-    val ratingKinoPoisk: Double
+    val ratingKinoPoisk: Double?
 ): Serializable

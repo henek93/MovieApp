@@ -6,6 +6,7 @@ import com.example.movieapp.data.network.pojo.BackdropDto
 import com.example.movieapp.data.network.pojo.CountriesDto
 import com.example.movieapp.data.network.pojo.GenreDto
 import com.example.movieapp.data.network.pojo.LogoDto
+import com.example.movieapp.data.network.pojo.SimilarMovieDto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
@@ -18,55 +19,55 @@ data class MovieDto(
 
     @SerializedName("name")
     @Expose
-    val name: String? = null,
+    val name: String?,
 
     @SerializedName("rating")
     @Expose
-    val rating: RatinggDto? = null,
+    val rating: RatinggDto,
 
     @SerializedName("description")
     @Expose
-    val description: String? = null,
+    val description: String?,
 
     @SerializedName("year")
     @Expose
-    val year: Int? = null,
+    val year: Int?,
 
     @SerializedName("poster")
     @Expose
-    val poster: PosterDto? = null,
+    val poster: PosterDto,
 
     @SerializedName("ageRaiting")
     @Expose
-    val pgRating: Int? = null,
+    val pgRating: Int?,
 
     @SerializedName("type")
     @Expose
-    val type: String? = null,
+    val type: String?,
 
     @SerializedName("type")
     @Expose
-    val genres: List<GenreDto>? = null,
+    val genres: List<GenreDto>,
 
     @SerializedName("type")
     @Expose
-    val countries: List<CountriesDto>? = null,
+    val countries: List<CountriesDto>,
 
     @SerializedName("type")
     @Expose
-    val actors: List<ActorDto>? = null,
+    val actors: List<ActorDto>,
 
     @SerializedName("type")
     @Expose
-    val similarMovies: List<MovieDto>? = null,
+    val similarMovies: List<SimilarMovieDto>,
 
     @SerializedName("backdrop")
     @Expose
-    val backdrop: BackdropDto? = null,
+    val backdrop: BackdropDto,
 
     @SerializedName("type")
     @Expose
-    val logo: LogoDto? = null
+    val logo: LogoDto
 ): Serializable
 
 

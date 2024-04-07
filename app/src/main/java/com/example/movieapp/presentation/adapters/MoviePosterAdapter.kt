@@ -21,7 +21,7 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
     override fun onBindViewHolder(holder: MoviePosterViewHolder, position: Int) {
         val movie = getItem(position)
 
-        val raiting = movie.rating.raiting
+        val raiting = movie.rating.rating
         var resId: Int
 
         if (raiting > 9.5){
@@ -49,9 +49,9 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
 
     override fun getItemViewType(position: Int): Int {
         val item = getItem(position)
-        return if (item.rating.raiting >= 9.5) {
+        return if (item.rating.rating >= 9.5) {
             GREEN_RAITING
-         } else if(item.rating.raiting >= 8.0){
+         } else if(item.rating.rating >= 8.0){
              ORANGE_RAITING
          }else{
              RED_RAITING
