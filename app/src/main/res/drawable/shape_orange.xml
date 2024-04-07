@@ -5,7 +5,6 @@
     >
 
     <corners android:radius="@dimen/movies_list_card_corners" />
-    <solid android:color="@color/background_card_color" />
-    <stroke android:color="@color/stroke_card_color" android:width="1dp" />
+    <solid android:color="@android:color/holo_orange_light" />
 
 </shape>

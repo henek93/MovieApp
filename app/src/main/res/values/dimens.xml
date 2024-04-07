@@ -14,7 +14,7 @@
     <dimen name="text_size_description">8sp</dimen>
 
     <!-- Movies List screen -->
-    <dimen name="movies_list_card_corners">8dp</dimen>
+    <dimen name="movies_list_card_corners">190dp</dimen>
     <dimen name="movies_list_top_margin">102dp</dimen>
     <dimen name="movies_list_allowed_age_space">24dp</dimen>
     <dimen name="movies_list_allowed_age_corners">5dp</dimen>
