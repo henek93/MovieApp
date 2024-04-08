@@ -5,6 +5,6 @@ data class Poster(
 ){
 
     companion object{
-        const val UNKNOWN_URL = "https://wcinema.ru/upload/000/u18/4/d/079ae886.jpg"
+        const val UNKNOWN_URL = "https://www.riakchr.ru/upload/iblock/39d/uavmacl6tbi2jttr09ah6csd1zlt1bbg.jpg"
     }
 }

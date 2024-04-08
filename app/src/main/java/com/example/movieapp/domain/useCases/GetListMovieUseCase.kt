@@ -8,5 +8,5 @@ class GetListMovieUseCase constructor(
     private val repository: MovieRepository
 ) {
 
-    suspend fun getListMovie(page: Int, lis: List<Movie>?) = repository.getListMovie(page, lis)
+    suspend fun getListMovie(page: Int) = repository.getListMovie(page)
 }

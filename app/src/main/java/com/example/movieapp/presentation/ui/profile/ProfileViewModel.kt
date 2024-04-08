@@ -26,7 +26,7 @@ class ProfileViewModel : ViewModel() {
 
     fun getListMovie(){
         viewModelScope.launch {
-            _listMovie.value = getListMovieUseCase.getListMovie(1, listMovie.value)
+            _listMovie.value = getListMovieUseCase.getListMovie(1)
         }
     }
 }

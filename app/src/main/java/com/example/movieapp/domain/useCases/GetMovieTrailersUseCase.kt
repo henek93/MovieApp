@@ -1,11 +1,10 @@
 package com.example.movieapp.domain.useCases
 
 import com.example.movieapp.domain.MovieRepository
-import javax.inject.Inject
 
-class GetPosterUseCase @Inject constructor(
+class GetMovieTrailersUseCase(
     private val repository: MovieRepository
 ) {
 
-    suspend fun getPoster(movieId: Int) = repository.getPoster(movieId)
+    suspend fun getMovieTrailers(movieId: Int) = repository.getMoviesTrailers(movieId)
 }

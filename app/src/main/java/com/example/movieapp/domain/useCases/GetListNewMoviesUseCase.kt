@@ -1,11 +1,10 @@
 package com.example.movieapp.domain.useCases
 
 import com.example.movieapp.domain.MovieRepository
-import javax.inject.Inject
 
-class GetRaitingUseCase @Inject constructor(
+class GetListNewMoviesUseCase(
     private val repository: MovieRepository
 ) {
 
-    suspend fun getRaiting(movieId: Int) = repository.getRaiting(movieId)
+    suspend fun getTopNewMovies(page: Int, limit: Int) = repository.getListNewMovies(page, limit)
 }

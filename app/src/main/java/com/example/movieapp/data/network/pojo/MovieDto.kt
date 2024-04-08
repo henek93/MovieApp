@@ -37,7 +37,7 @@ data class MovieDto(
     @Expose
     val poster: PosterDto,
 
-    @SerializedName("ageRaiting")
+    @SerializedName("ageRating")
     @Expose
     val pgRating: Int?,
 
@@ -45,19 +45,19 @@ data class MovieDto(
     @Expose
     val type: String?,
 
-    @SerializedName("type")
+    @SerializedName("genres")
     @Expose
     val genres: List<GenreDto>,
 
-    @SerializedName("type")
+    @SerializedName("countries")
     @Expose
     val countries: List<CountriesDto>,
 
-    @SerializedName("type")
+    @SerializedName("persons")
     @Expose
     val actors: List<ActorDto>,
 
-    @SerializedName("type")
+    @SerializedName("similarMovies")
     @Expose
     val similarMovies: List<SimilarMovieDto>,
 
@@ -65,7 +65,7 @@ data class MovieDto(
     @Expose
     val backdrop: BackdropDto,
 
-    @SerializedName("type")
+    @SerializedName("logo")
     @Expose
     val logo: LogoDto
 ): Serializable
