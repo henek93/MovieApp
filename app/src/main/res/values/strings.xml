@@ -9,8 +9,16 @@
     <string name="title_dashboard">Dashboard</string>
 
     <!-- fragment main -->
+    <string name="adventure_movies">Приключенческие фильмы</string>
+    <string name="criminals_movies">Криминальные фильмы</string>
+    <string name="comedies_movies">Комедийные фильмы</string>
+    <string name="shooters">Боевики</string>
+    <string name="romantic_movies">Романтические фильмы</string>
+    <string name="fantasy">Фэнтези</string>
+    <string name="history">Исторические</string>
+    <string name="wars">Военные фильмы</string>
+    <string name="all">Все</string>
+    <string name="top_250_movies">Фильмы из Топ-250 Кинопоиска</string>
     <string name="top_new_films">Топ новых фильмов</string>
-    <string name="adventures">Приключенчения</string>
-    <string name="love_story">Романтические</string>
     <string name="best_comedy">Лучшие комдии</string>
 </resources>

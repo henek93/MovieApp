@@ -8,10 +8,17 @@
     <dimen name="spacing_6x">24dp</dimen>
     <dimen name="spacing_13x">52dp</dimen>
 
+
+    <!--Размер текста и картинок-->
+    <dimen name="text_all">20sp</dimen>
+    <dimen name="text_size_title_top">18sp</dimen>
     <dimen name="text_size_headline">40sp</dimen>
     <dimen name="text_size_sub_title">13sp</dimen>
     <dimen name="text_size_body">12sp</dimen>
     <dimen name="text_size_description">8sp</dimen>
+    <dimen name="text_width_height_all">28dp</dimen>
+    <dimen name="image_width">18dp</dimen>
+    <dimen name="image_height">30dp</dimen>
 
     <!-- Movies List screen -->
     <dimen name="movies_list_card_corners">190dp</dimen>

@@ -22,17 +22,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--            <androidx.recyclerview.widget.RecyclerView-->
-            <!--                android:id="@+id/main_rw"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="450dp"-->
-            <!--                android:orientation="horizontal"-->
-            <!--                android:background="@drawable/ic_mask"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent"-->
-            <!--                tools:listitem="@layout/card_view_film" />-->
-
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="@color/background_card_color"
+                android:clipToPadding="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layout_1"/>
 
             <LinearLayout
                 android:id="@+id/layout_1"
@@ -42,22 +41,48 @@
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/view_pager">
 
-                <TextView
-                    android:id="@+id/text_top_new_films"
+
+                <LinearLayout
+                    android:id="@+id/text_layout_top_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/top_new_films"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/adventure_movies"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_title_top"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:layout_weight="2"
+                        />
+
+                    <TextView
+                        android:layout_width="@dimen/text_width_height_all"
+                        android:layout_height="@dimen/text_width_height_all"
+                        android:text="@string/all"
+                        android:textColor="@color/pink_light"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="2dp"
+                        android:textSize="@dimen/text_all" android:layout_weight="0.8"
+                        android:gravity="end|center"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:src="@drawable/new_ic_forward"
+                        android:layout_gravity="center|end"/>
+                </LinearLayout>
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rw_top_new_films"
+                    android:id="@+id/recycler_view_1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
                     android:nestedScrollingEnabled="false"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -75,26 +100,314 @@
                 android:padding="16dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/adventure_best"
+                <LinearLayout
+                    android:id="@+id/text_layout_top_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/adventures"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
+                    android:orientation="horizontal">
 
-                    android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/criminals_movies"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_title_top"
+                        android:textStyle="bold"
+                        android:layout_weight="2"/>
+
+                    <TextView
+                        android:layout_width="@dimen/text_width_height_all"
+                        android:layout_height="@dimen/text_width_height_all"
+                        android:text="@string/all"
+                        android:textColor="@color/pink_light"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_all"
+                        android:layout_weight="0.8"
+                        android:gravity="end|center"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:src="@drawable/new_ic_forward"
+                        android:layout_gravity="end"/>
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rw_adventure_best"
+                    android:id="@+id/recycler_view_2"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:nestedScrollingEnabled="false"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/view_holder_movie" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_2"
+                android:padding="16dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/text_layout_top_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                   >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/top_250_movies"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_title_top"
+                        android:textStyle="bold"
+                        android:layout_weight="2"
+                        />
+
+                    <TextView
+                        android:layout_width="@dimen/text_width_height_all"
+                        android:layout_height="@dimen/text_width_height_all"
+                        android:text="@string/all"
+                        android:textColor="@color/pink_light"
+                        android:textStyle="bold"
+                        android:layout_weight="0.8"
+                        android:textSize="@dimen/text_all"
+                        android:gravity="end|center"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/image_width"
+                        android:layout_height="@dimen/image_height"
+                        android:src="@drawable/new_ic_forward"
+                        />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_3"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_height="250dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/view_holder_movie" />
+            </LinearLayout>
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/layout_4"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/layout_3"-->
+<!--                android:padding="16dp"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/text_layout_top_4"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/comedies_movies"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="@dimen/text_size_title_top"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="2"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="@dimen/text_width_height_all"-->
+<!--                        android:layout_height="@dimen/text_width_height_all"-->
+<!--                        android:text="@string/all"-->
+<!--                        android:textColor="@color/pink_light"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="0.8"-->
+<!--                        android:textSize="@dimen/text_all"-->
+<!--                        android:gravity="end|center"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="@dimen/image_width"-->
+<!--                        android:layout_height="@dimen/image_height"-->
+<!--                        android:src="@drawable/new_ic_forward"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler_view_4"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:nestedScrollingEnabled="false"-->
+<!--                    android:layout_height="250dp"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                    tools:listitem="@layout/view_holder_movie" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/layout_5"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/layout_4"-->
+<!--                android:padding="16dp"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/text_layout_top_5"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/shooters"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="@dimen/text_size_title_top"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="2"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="@dimen/text_width_height_all"-->
+<!--                        android:layout_height="@dimen/text_width_height_all"-->
+<!--                        android:text="@string/all"-->
+<!--                        android:textColor="@color/pink_light"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="0.8"-->
+<!--                        android:textSize="@dimen/text_all"-->
+<!--                        android:gravity="end|center"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="@dimen/image_width"-->
+<!--                        android:layout_height="@dimen/image_height"-->
+<!--                        android:src="@drawable/new_ic_forward"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler_view_5"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:nestedScrollingEnabled="false"-->
+<!--                    android:layout_height="250dp"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                    tools:listitem="@layout/view_holder_movie" />-->
+<!--            </LinearLayout>-->
+
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/layout_6"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/layout_5"-->
+<!--                android:padding="16dp"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/text_layout_top_6"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/romantic_movies"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="@dimen/text_size_title_top"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="2"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="@dimen/text_width_height_all"-->
+<!--                        android:layout_height="@dimen/text_width_height_all"-->
+<!--                        android:text="@string/all"-->
+<!--                        android:textColor="@color/pink_light"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="0.8"-->
+<!--                        android:textSize="@dimen/text_all"-->
+<!--                        android:gravity="end|center"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="@dimen/image_width"-->
+<!--                        android:layout_height="@dimen/image_height"-->
+<!--                        android:src="@drawable/new_ic_forward"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler_view_6"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:nestedScrollingEnabled="false"-->
+<!--                    android:layout_height="250dp"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                    tools:listitem="@layout/view_holder_movie" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/layout_7"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/layout_6"-->
+<!--                android:padding="16dp"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/text_layout_top_7"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/fantasy"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="@dimen/text_size_title_top"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="2"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="@dimen/text_width_height_all"-->
+<!--                        android:layout_height="@dimen/text_width_height_all"-->
+<!--                        android:text="@string/all"-->
+<!--                        android:textColor="@color/pink_light"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_weight="0.8"-->
+<!--                        android:textSize="@dimen/text_all"-->
+<!--                        android:gravity="end|center"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="@dimen/image_width"-->
+<!--                        android:layout_height="@dimen/image_height"-->
+<!--                        android:src="@drawable/new_ic_forward"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler_view_7"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:nestedScrollingEnabled="false"-->
+<!--                    android:layout_height="250dp"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                    tools:listitem="@layout/view_holder_movie" />-->
+<!--            </LinearLayout>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
