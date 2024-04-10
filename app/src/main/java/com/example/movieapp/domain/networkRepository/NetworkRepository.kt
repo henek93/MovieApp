@@ -1,15 +1,11 @@
-package com.example.movieapp.domain
+package com.example.movieapp.domain.networkRepository
 
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.Trailer
 
-interface MovieRepository {
+interface NetworkRepository {
 
     suspend fun getMovie(movieId: Int): Movie
-
-    suspend fun getListMovie(page: Int): List<Movie>
-
-    suspend fun makeLove()
 
     suspend fun getMoviesTrailers(id: Int): List<Trailer>
 

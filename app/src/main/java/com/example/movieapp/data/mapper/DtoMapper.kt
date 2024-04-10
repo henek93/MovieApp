@@ -15,11 +15,13 @@ import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.Poster
 import com.example.movieapp.domain.enteties.Rating
 import com.example.movieapp.domain.enteties.SimilarMovie
+import com.example.movieapp.domain.enteties.Trailer
 import com.example.movieappkotlin.pojo.MovieDto
 import com.example.movieappkotlin.pojo.PosterDto
 import com.example.movieappkotlin.pojo.RatinggDto
+import com.example.movieappkotlin.pojo.TrailerDto
 
-class MovieMapper{
+class DtoMapper{
 
     fun mapMovieDtoMovie(movieDto: MovieDto) = Movie(
         id = movieDto.id,
@@ -37,6 +39,15 @@ class MovieMapper{
         backdrop = mapBackdropDtoBackDrop(movieDto.backdrop),
         logo = mapLogoDtoLogo(movieDto.logo)
     )
+
+    fun mapTrailerDtoTrailer(trailerDto: TrailerDto) = Trailer(
+        url = trailerDto.url ?: Trailer.UNKNOWN_URL,
+        name = trailerDto.name ?: Trailer.UNKNOWN_NAME
+    )
+
+    fun mapListTrailerDtoTrailer(list: List<TrailerDto>) = list.map {
+        mapTrailerDtoTrailer(it)
+    }
 
     fun mapLogoDtoLogo(logoDto: LogoDto) = Logo(
         url = logoDto.url ?: Logo.UNKNOWN_URL

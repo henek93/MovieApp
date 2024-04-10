@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.movieapp.databinding.FragmentMainBinding
+import com.example.movieapp.domain.enteties.Genre
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import java.lang.RuntimeException
 
@@ -20,8 +21,8 @@ class MainFragment : Fragment() {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
-    private lateinit var movieAdapterTop: MoviePosterAdapter
-    private lateinit var movieAdapterAdv: MoviePosterAdapter
+    private lateinit var adapterPaeger: MoviePosterAdapter
+    private lateinit var adapterRw1: MoviePosterAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,10 +33,17 @@ class MainFragment : Fragment() {
         val root: View = binding.root
 
         setupRecyclerView()
-        viewModel.getListMovie()
+        loadData()
         observeViewModel()
 
         return root
+    }
+
+    private fun loadData(){
+        viewModel.getMovieListPager(1,5)
+        viewModel.getMovieListRw1(Genre.ADVENTURE_GENRE, 1, 10)
+        viewModel.getMovieListRw2(Genre.CRIMINAL_GENRE, 1, 10)
+        viewModel.getMovieListRw3("top250", 1, 10)
     }
 
     private fun setupRecyclerView() {
@@ -51,9 +59,9 @@ class MainFragment : Fragment() {
     }
 
     private fun observeViewModel(){
-        viewModel.listMovie.observe(viewLifecycleOwner){
-            movieAdapterTop.submitList(it)
-            movieAdapterAdv.submitList(it)
+        viewModel.getTopMovieList.observe(viewLifecycleOwner){
+            adapterPaeger.submitList(it)
+            adapterRw1.submitList(it)
         }
     }
 
