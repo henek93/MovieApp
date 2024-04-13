@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.movieapp.R
 import com.example.movieapp.domain.enteties.Movie
-import com.example.movieapp.presentation.callBacks.MoviePosterDiffCallback
+import com.example.movieapp.presentation.adapters.callBacks.MoviePosterDiffCallback
 import com.example.movieapp.presentation.viewHolders.MoviePosterViewHolder
 import com.squareup.picasso.Picasso
 

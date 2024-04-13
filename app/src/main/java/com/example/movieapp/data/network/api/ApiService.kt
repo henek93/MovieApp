@@ -18,11 +18,11 @@ interface ApiService {
     @GET("v1.4/movie/{id}?token=HSDF43E-YJH4D72-NQ89AHR-36KDFV3")
     suspend fun getMoviesTrailers(@Path("id") id:Int): Response<VideosDto>
 
-    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=description&selectFields=shortDescription&selectFields=rating&selectFields=poster&selectFields=ageRating&notNullFields=poster.url&notNullFields=shortDescription&sortField=rating.kp&sortType=-1&type=&status=completed&year=2024&rating.kp=6-10")
+    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=rating&selectFields=description&selectFields=year&selectFields=poster&selectFields=ageRating&selectFields=type&selectFields=genres&selectFields=countries&selectFields=persons&selectFields=similarMovies&selectFields=backdrop&selectFields=logo&sortField=rating.kp&sortType=-1&notNullFields=description&notNullFields=poster.url&notNullFields=backdrop.url&notNullFields=logo.url")
     suspend fun getListNewMovies(@Query("page") page: Int,
                                 @Query("limit") limit: Int): Response<MovieSourceDto>
 
-    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=description&selectFields=shortDescription&selectFields=rating&selectFields=poster&selectFields=ageRating&notNullFields=poster.url&sortField=rating.kp&sortType=-1&type=movie&status=completed&year=&rating.kp=7-10")
+    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=rating&selectFields=description&selectFields=year&selectFields=poster&selectFields=ageRating&selectFields=type&selectFields=genres&selectFields=countries&selectFields=persons&selectFields=similarMovies&selectFields=backdrop&selectFields=logo&sortField=rating.kp&sortType=-1&notNullFields=description&notNullFields=poster.url&notNullFields=backdrop.url&notNullFields=logo.url")
     suspend fun getListMoviesWithGenre(
         @Query("genres.name") genreName: String,
         @Query("page") page: Int,

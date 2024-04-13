@@ -1,10 +1,12 @@
 package com.example.movieapp.data.repositoryImpl
 
+import android.util.Log
 import com.example.movieapp.data.mapper.DtoMapper
 import com.example.movieapp.data.network.api.ApiFactory
 import com.example.movieapp.domain.networkRepository.NetworkRepository
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.Trailer
+import java.lang.Error
 
 class NetworkRepositoryImpl : NetworkRepository {
 
@@ -53,16 +55,18 @@ class NetworkRepositoryImpl : NetworkRepository {
         limit: Int
     ): List<Movie> {
         val response = apiService.getListMoviesWithGenre(
-            genreName,
-            page,
-            limit
+            genreName = genreName,
+            page = page,
+            limit = limit
         )
         if (response.isSuccessful) {
             response.body()?.let {
+                Log.d("NeteworkRepositoryImpl", it.docs.toString())
                 return mapper.mapListMovieDtoMovie(it.docs)
             }
+            Log.d("NeteworkRepositoryImpl", response.message())
         }
-        throw RuntimeException("Ошибка в получение данных по жанру")
+        throw RuntimeException("Ошибка в получение данных по жанру ${genreName} ")
     }
 
     override suspend fun getTopListMovies(list: String, page: Int, limit: Int): List<Movie> {

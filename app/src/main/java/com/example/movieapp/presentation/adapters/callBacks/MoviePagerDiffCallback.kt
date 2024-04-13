@@ -1,9 +1,10 @@
-package com.example.movieapp.presentation.callBacks
+package com.example.movieapp.presentation.adapters.callBacks
 
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.domain.enteties.Movie
 
-class MoviePosterDiffCallback: DiffUtil.ItemCallback<Movie>() {
+class MoviePagerDiffCallback: DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
         return oldItem.id == newItem.id
     }

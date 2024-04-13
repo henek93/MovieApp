@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.movieapp.databinding.FragmentMainBinding
 import com.example.movieapp.domain.enteties.Genre
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
+import com.example.movieapp.presentation.adapters.MovieViewPagerAdapter
 import java.lang.RuntimeException
 
 class MainFragment : Fragment() {
@@ -21,8 +22,11 @@ class MainFragment : Fragment() {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
-    private lateinit var adapterPaeger: MoviePosterAdapter
+    private lateinit var adapterPager: MovieViewPagerAdapter
     private lateinit var adapterRw1: MoviePosterAdapter
+    private lateinit var adapterRw2: MoviePosterAdapter
+    private lateinit var adapterRw3: MoviePosterAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,27 +45,48 @@ class MainFragment : Fragment() {
 
     private fun loadData(){
         viewModel.getMovieListPager(1,5)
-        viewModel.getMovieListRw1(Genre.ADVENTURE_GENRE, 1, 10)
-        viewModel.getMovieListRw2(Genre.CRIMINAL_GENRE, 1, 10)
+        viewModel.getMovieListRw1("драма", 1, 10)
+        viewModel.getMovieListRw2("драма", 1, 10)
         viewModel.getMovieListRw3("top250", 1, 10)
     }
 
     private fun setupRecyclerView() {
-        with(binding.rwTopNewFilms){
-            movieAdapterTop = MoviePosterAdapter()
-            adapter = movieAdapterTop
+        with(binding.viewPager){
+            adapterPager = MovieViewPagerAdapter()
+            adapter = adapterPager
         }
 
-        with(binding.rwAdventureBest){
-            movieAdapterAdv = MoviePosterAdapter()
-            adapter = movieAdapterAdv
+        with(binding.recyclerView1){
+            adapterRw1 = MoviePosterAdapter()
+            adapter = adapterRw1
+        }
+
+        with(binding.recyclerView2){
+            adapterRw2 = MoviePosterAdapter()
+            adapter = adapterRw2
+        }
+
+        with(binding.recyclerView3){
+            adapterRw3 = MoviePosterAdapter()
+            adapter = adapterRw3
         }
     }
 
     private fun observeViewModel(){
-        viewModel.getTopMovieList.observe(viewLifecycleOwner){
-            adapterPaeger.submitList(it)
+        viewModel.pagerMovieList.observe(viewLifecycleOwner){
+            adapterPager.submitList(it)
+        }
+
+        viewModel.rwMovieList1.observe(viewLifecycleOwner){
             adapterRw1.submitList(it)
+        }
+
+        viewModel.rwMovieList2.observe(viewLifecycleOwner){
+            adapterRw2.submitList(it)
+        }
+
+        viewModel.rwMovieList3.observe(viewLifecycleOwner){
+            adapterRw3.submitList(it)
         }
     }
 

@@ -82,16 +82,22 @@ class DtoMapper{
         url = posterDto.url ?: Poster.UNKNOWN_URL
     )
 
-    fun mapRaitingDtoRaiting(ratingDto: RatinggDto) = Rating(
-        rating = ratingDto.ratingKinoPoisk ?: Rating.UNKNOWN_RATING
+    fun mapRaitingDtoRaiting(ratingDto: RatinggDto?) = Rating(
+        rating = ratingDto?.ratingKinoPoisk ?: Rating.UNKNOWN_RATING
     )
 
     fun mapListMovieDtoMovie(listMovieDto: List<MovieDto>) = listMovieDto.map {
         mapMovieDtoMovie(it)
     }
 
-    fun mapListSimilarMovieDtoSimilarMovie(listSimilarMovieDto: List<SimilarMovieDto>) = listSimilarMovieDto.map {
-        mapSimilarMovieDtoSimilarMovie(it)
+    fun mapListSimilarMovieDtoSimilarMovie(listSimilarMovieDto: List<SimilarMovieDto>) : List<SimilarMovie> {
+        if (listSimilarMovieDto.isNotEmpty()){
+            return listSimilarMovieDto.map {
+                    mapSimilarMovieDtoSimilarMovie(it)
+                }
+            }
+        else
+            return emptyList()
     }
 
     fun mapSimilarMovieDtoSimilarMovie(similarMovieDto: SimilarMovieDto) = SimilarMovie(
