@@ -34,4 +34,7 @@
     <dimen name="actor_card_divider">8dp</dimen>
     <!-- Movie Detail screen -->
 
+    <!--scale for margin pager-->
+    <dimen name="viewpager_next_item_visible">16dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">27dp</dimen>
 </resources>

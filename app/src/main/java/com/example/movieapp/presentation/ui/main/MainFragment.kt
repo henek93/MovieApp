@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
 import com.example.movieapp.domain.enteties.Genre
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.adapters.MovieViewPagerAdapter
 import java.lang.RuntimeException
+import kotlin.math.abs
 
 class MainFragment : Fragment() {
 
@@ -39,6 +43,7 @@ class MainFragment : Fragment() {
         setupRecyclerView()
         loadData()
         observeViewModel()
+        setPagerTransformer()
 
         return root
     }
@@ -46,7 +51,7 @@ class MainFragment : Fragment() {
     private fun loadData(){
         viewModel.getMovieListPager(1,5)
         viewModel.getMovieListRw1("драма", 1, 10)
-        viewModel.getMovieListRw2("драма", 1, 10)
+        viewModel.getMovieListRw2("комедия", 1, 10)
         viewModel.getMovieListRw3("top250", 1, 10)
     }
 
@@ -94,6 +99,31 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun setPagerTransformer(){
+        binding.viewPager.offscreenPageLimit = 1
+
+        val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
+        val currentItemHorizontalMarginPx = resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
+        val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
+        val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+            page.translationX = -pageTranslationX * position
+            // Next line scales the item's height. You can remove it if you don't want this effect
+            page.scaleY = 1 - (0.15f * abs(position))
+            // If you want a fading effect uncomment the next line:
+            // page.alpha = 0.25f + (1 - abs(position))
+        }
+
+        binding.viewPager.setPageTransformer(pageTransformer)
+
+        val itemDecoration = HorizontalMarginItemDecoration(
+            requireContext(),
+            R.dimen.viewpager_current_item_horizontal_margin
+        )
+        binding.viewPager.addItemDecoration(itemDecoration)
+
+    }
+
 
     companion object{
         fun newInstanceMainFragment() = MainFragment()

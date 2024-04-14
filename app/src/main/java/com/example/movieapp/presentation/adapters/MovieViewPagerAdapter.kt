@@ -7,10 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.example.movieapp.R
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.presentation.adapters.callBacks.MoviePagerDiffCallback
 import com.squareup.picasso.Picasso
+
 
 class MovieViewPagerAdapter : ListAdapter<Movie, MovieViewPagerAdapter.PagerVh>(MoviePagerDiffCallback()) {
 
@@ -29,11 +31,13 @@ class MovieViewPagerAdapter : ListAdapter<Movie, MovieViewPagerAdapter.PagerVh>(
 
         Picasso.get()
             .load(item.logo.url)
-            .resize(500, 500)
             .into(holder.logo)
 
         holder.description.text = item.description
     }
+
+
+
 
     class PagerVh(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val backdrop = itemView.findViewById<ImageView>(R.id.imageViewBackdrop)
