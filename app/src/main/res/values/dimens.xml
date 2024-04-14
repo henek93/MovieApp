@@ -10,10 +10,10 @@
 
 
     <!--Размер текста и картинок-->
-    <dimen name="text_all">20sp</dimen>
-    <dimen name="text_size_title_top">18sp</dimen>
+    <dimen name="text_all">15sp</dimen>
+    <dimen name="text_size_title_top">15sp</dimen>
     <dimen name="text_size_headline">40sp</dimen>
-    <dimen name="text_size_sub_title">13sp</dimen>
+    <dimen name="text_size_sub_title">15sp</dimen>
     <dimen name="text_size_body">12sp</dimen>
     <dimen name="text_size_description">8sp</dimen>
     <dimen name="text_width_height_all">28dp</dimen>

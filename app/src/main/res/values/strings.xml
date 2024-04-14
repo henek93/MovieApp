@@ -21,4 +21,8 @@
     <string name="top_250_movies">Фильмы из Топ-250 Кинопоиска</string>
     <string name="top_new_films">Топ новых фильмов</string>
     <string name="best_comedy">Лучшие комдии</string>
+    <string name="back">Назад</string>
+    <string name="storyline">Описание</string>
+    <string name="actors">Актерский состав</string>
+    <string name="same_movies">Похожие фильмы</string>
 </resources>

@@ -19,6 +19,7 @@ data class Movie(
 
     companion object{
 
+        const val NOT_ID = -1
         const val UNKNOWN_NAME = "Неизвестно название фильма"
         const val UNKNOWN_DESCRIPTION = "Нет описания"
         const val UNKNOWN_PG_RATING = -10

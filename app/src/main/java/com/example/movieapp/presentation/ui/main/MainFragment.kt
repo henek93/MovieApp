@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
-import com.example.movieapp.domain.enteties.Genre
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.adapters.MovieViewPagerAdapter
-import java.lang.RuntimeException
 import kotlin.math.abs
 
 class MainFragment : Fragment() {
@@ -45,52 +42,52 @@ class MainFragment : Fragment() {
         observeViewModel()
         setPagerTransformer()
 
-        return root
+        return binding.root
     }
 
-    private fun loadData(){
-        viewModel.getMovieListPager(1,5)
+    private fun loadData() {
+        viewModel.getMovieListPager(1, 5)
         viewModel.getMovieListRw1("драма", 1, 10)
         viewModel.getMovieListRw2("комедия", 1, 10)
         viewModel.getMovieListRw3("top250", 1, 10)
     }
 
     private fun setupRecyclerView() {
-        with(binding.viewPager){
+        with(binding.viewPager) {
             adapterPager = MovieViewPagerAdapter()
             adapter = adapterPager
         }
 
-        with(binding.recyclerView1){
+        with(binding.recyclerView1) {
             adapterRw1 = MoviePosterAdapter()
             adapter = adapterRw1
         }
 
-        with(binding.recyclerView2){
+        with(binding.recyclerView2) {
             adapterRw2 = MoviePosterAdapter()
             adapter = adapterRw2
         }
 
-        with(binding.recyclerView3){
+        with(binding.recyclerView3) {
             adapterRw3 = MoviePosterAdapter()
             adapter = adapterRw3
         }
     }
 
-    private fun observeViewModel(){
-        viewModel.pagerMovieList.observe(viewLifecycleOwner){
+    private fun observeViewModel() {
+        viewModel.pagerMovieList.observe(viewLifecycleOwner) {
             adapterPager.submitList(it)
         }
 
-        viewModel.rwMovieList1.observe(viewLifecycleOwner){
+        viewModel.rwMovieList1.observe(viewLifecycleOwner) {
             adapterRw1.submitList(it)
         }
 
-        viewModel.rwMovieList2.observe(viewLifecycleOwner){
+        viewModel.rwMovieList2.observe(viewLifecycleOwner) {
             adapterRw2.submitList(it)
         }
 
-        viewModel.rwMovieList3.observe(viewLifecycleOwner){
+        viewModel.rwMovieList3.observe(viewLifecycleOwner) {
             adapterRw3.submitList(it)
         }
     }
@@ -100,11 +97,12 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    private fun setPagerTransformer(){
+    private fun setPagerTransformer() {
         binding.viewPager.offscreenPageLimit = 1
 
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
-        val currentItemHorizontalMarginPx = resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
+        val currentItemHorizontalMarginPx =
+            resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
         val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
         val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
             page.translationX = -pageTranslationX * position
@@ -125,7 +123,7 @@ class MainFragment : Fragment() {
     }
 
 
-    companion object{
+    companion object {
         fun newInstanceMainFragment() = MainFragment()
     }
 }
