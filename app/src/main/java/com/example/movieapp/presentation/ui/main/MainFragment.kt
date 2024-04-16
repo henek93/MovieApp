@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.adapters.MovieViewPagerAdapter
+import com.example.movieapp.presentation.ui.movie.MovieFragment
 import kotlin.math.abs
 
 class MainFragment : Fragment() {
@@ -41,8 +43,30 @@ class MainFragment : Fragment() {
         loadData()
         observeViewModel()
         setPagerTransformer()
+        setOnPosterClickListener()
 
         return binding.root
+    }
+
+    private fun setOnPosterClickListener() {
+        adapterRw1.onPosterClickListener = {
+            openMovieDescription(it)
+        }
+
+        adapterRw2.onPosterClickListener = {
+            openMovieDescription(it)
+        }
+
+        adapterRw3.onPosterClickListener = {
+            openMovieDescription(it)
+        }
+    }
+
+
+    private fun openMovieDescription(currentMovieId: Int) {
+        findNavController().navigate(
+            MainFragmentDirections.actionMainFragmentToNavigationMovie(currentMovieId)
+        )
     }
 
     private fun loadData() {

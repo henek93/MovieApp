@@ -3,19 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/main_fragment">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/main_fragment"
         android:name="com.example.movieapp.presentation.ui.main.MainFragment"
         android:label="@string/title_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+
+        <action
+            android:id="@+id/action_main_fragment_to_navigation_movie"
+            app:destination="@id/movie_fragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_search"
+        android:id="@+id/search_fragment"
         android:name="com.example.movieapp.presentation.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favourite"
@@ -27,4 +33,14 @@
         android:name="com.example.movieapp.presentation.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/movie_fragment"
+        android:name="com.example.movieapp.presentation.ui.movie.MovieFragment"
+        android:label="Фильм"
+        tools:layout="@layout/fragment_movie">
+        <argument
+            android:name="movieid"
+            app:argType="integer" />
+    </fragment>
 </navigation>

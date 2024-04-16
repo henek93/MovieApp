@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso
 
 class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePosterDiffCallback()) {
 
+    var onPosterClickListener: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviePosterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie, parent, false)
@@ -47,19 +48,11 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
             filmNameText.text = movie.name
         }
 
-
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        val item = getItem(position)
-        return if (item.rating.rating >= 9.5) {
-            GREEN_RAITING
-         } else if(item.rating.rating >= 8.0){
-             ORANGE_RAITING
-         }else{
-             RED_RAITING
+        holder.view.setOnClickListener {
+            onPosterClickListener?.invoke(movie.id)
         }
     }
+
 
     companion object {
 

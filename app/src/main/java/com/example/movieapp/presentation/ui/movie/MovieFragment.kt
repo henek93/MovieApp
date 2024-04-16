@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.example.movieapp.databinding.FragmentMovieBinding
 import com.example.movieapp.domain.enteties.Movie
+import com.example.movieapp.presentation.adapters.MoviePosterAdapter
+import com.squareup.picasso.Picasso
 
 
 class MovieFragment : Fragment() {
@@ -20,7 +23,11 @@ class MovieFragment : Fragment() {
         ViewModelProvider(this)[MovieViewModel::class.java]
     }
 
-    private var movieId =Movie.NOT_ID
+    private val similarMoviesAdapter by lazy {
+        MoviePosterAdapter()
+    }
+
+    private val args by navArgs<MovieFragmentArgs>()
 
 
     override fun onCreateView(
@@ -32,12 +39,6 @@ class MovieFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parcParams()
-    }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,19 +48,26 @@ class MovieFragment : Fragment() {
     }
 
     private fun getCurrentFilm() {
-        viewModel.getCurrentMovie(movieId)
+        viewModel.getCurrentMovie(args.movieid)
     }
 
-
-    private fun parcParams() {
-        if (!requireArguments().containsKey(MOVIE_ID))
-            throw RuntimeException("Dont have movie id")
-        movieId = requireArguments().getInt(MOVIE_ID)
-    }
 
     private fun observeViewModel() {
         viewModel.currentMovie.observe(viewLifecycleOwner){
-            TODO("need to add adapters for recyclerViewes")
+            with(binding){
+                Picasso.get()
+                    .load(it.poster.url)
+                    .into(moviePosterImage)
+
+                movieAgeRestrictionsText.text = it.pgRating.toString()
+                movieNameText.text = it.name
+                movieGenresText.text = it.genres.joinToString(",")
+                ratingBar.rating = (it.rating.rating / 5).toFloat()
+                movieStorylineText.text = it.description
+
+//                recyclerMovies.adapter = similarMoviesAdapter
+//                similarMoviesAdapter.submitList(it.similarMovies)
+            }
         }
     }
 
@@ -67,12 +75,10 @@ class MovieFragment : Fragment() {
 
         const val MOVIE_ID = "movie_id"
 
-        @JvmStatic
-        fun newInstance(movieId: Int) =
-            MovieFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(MOVIE_ID, movieId)
-                }
-            }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
