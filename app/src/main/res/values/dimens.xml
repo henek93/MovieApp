@@ -23,9 +23,9 @@
     <!-- Movies List screen -->
     <dimen name="movies_list_card_corners">190dp</dimen>
     <dimen name="movies_list_top_margin">102dp</dimen>
-    <dimen name="movies_list_allowed_age_space">24dp</dimen>
+    <dimen name="movies_list_allowed_age_space">17dp</dimen>
     <dimen name="movies_list_allowed_age_corners">5dp</dimen>
-    <dimen name="movies_list_favorite_icon_space">24dp</dimen>
+    <dimen name="movies_list_favorite_icon_space">17dp</dimen>
     <dimen name="movies_list_rating_star_icon_space">8dp</dimen>
     <!-- Movies List screen -->
 

@@ -1,8 +1,13 @@
 package com.example.movieapp.presentation.adapters
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.ListAdapter
+import com.bumptech.glide.Glide
 import com.example.movieapp.R
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.presentation.adapters.callBacks.MoviePosterDiffCallback
@@ -40,10 +45,12 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
             pgText.text = movie.rating.toString()
             pgText.setBackgroundResource(resId)
 
-            Picasso.get()
+            Glide.with(holder.view.context)
+                .asBitmap()
                 .load(urlPoster)
-                .resize(300, 400)
+                .fitCenter()
                 .into(poster)
+
 
             filmNameText.text = movie.name
         }
