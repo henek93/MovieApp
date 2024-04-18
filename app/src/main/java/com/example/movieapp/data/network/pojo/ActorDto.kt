@@ -22,7 +22,7 @@ data class ActorDto(
 
     @SerializedName("profession")
     @Expose
-    val listProfessionDto: ProfessionDto,
+    val listProfessionDto: List<ProfessionDto>,
 
     @SerializedName("birthday")
     @Expose
@@ -30,5 +30,5 @@ data class ActorDto(
 
     @SerializedName("movies")
     @Expose
-    val listMovieDto: List<MovieDto>
+    val listMovieDto: List<MovieActorDto>
 )

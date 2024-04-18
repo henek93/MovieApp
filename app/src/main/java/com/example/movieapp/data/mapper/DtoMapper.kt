@@ -5,6 +5,8 @@ import com.example.movieapp.data.network.pojo.BackdropDto
 import com.example.movieapp.data.network.pojo.CountriesDto
 import com.example.movieapp.data.network.pojo.GenreDto
 import com.example.movieapp.data.network.pojo.LogoDto
+import com.example.movieapp.data.network.pojo.MovieActorDto
+import com.example.movieapp.data.network.pojo.ProfessionDto
 import com.example.movieapp.data.network.pojo.SimilarMovieDto
 import com.example.movieapp.domain.enteties.Actor
 import com.example.movieapp.domain.enteties.Backdrop
@@ -12,7 +14,9 @@ import com.example.movieapp.domain.enteties.Countries
 import com.example.movieapp.domain.enteties.Genre
 import com.example.movieapp.domain.enteties.Logo
 import com.example.movieapp.domain.enteties.Movie
+import com.example.movieapp.domain.enteties.MovieActor
 import com.example.movieapp.domain.enteties.Poster
+import com.example.movieapp.domain.enteties.Profession
 import com.example.movieapp.domain.enteties.Rating
 import com.example.movieapp.domain.enteties.SimilarMovie
 import com.example.movieapp.domain.enteties.Trailer
@@ -60,15 +64,33 @@ class DtoMapper{
 
 
     fun mapListActorsDtoActors(listActorsDto: List<ActorDto>) = listActorsDto.map {
-        mapActorsDtoActors(it)
+        mapActorDtoActor(it)
     }
 
-    fun mapActorsDtoActors(actorDto: ActorDto) = Actor(
+    fun mapActorDtoActor(actorDto: ActorDto) = Actor(
         id = actorDto.id,
         photoUrl = actorDto.photoUrl ?: Actor.UNKNOWN_PHOTO,
-        description = actorDto.description ?: Actor.UNKNOWN_DESCRIPTION,
-        name = actorDto.name ?: Actor.UNKNOWN_NAME
+        name = actorDto.name ?: Actor.UNKNOWN_NAME,
+        listMovies = mapListMovieActorMovieActor(actorDto.listMovieDto),
+        dateOfBirth = actorDto.birthday ?: Actor.UNKNOWN_BIRTH,
+        listProfession = mapListProfessionDtoToListProfession(actorDto.listProfessionDto)
     )
+
+    fun mapListMovieActorMovieActor(list: List<MovieActorDto>) = list.map {
+        mapMovieActorDtoMovieActor(it)
+    }
+
+    fun mapMovieActorDtoMovieActor(movieActorDto: MovieActorDto) = MovieActor(
+        id = movieActorDto.id
+    )
+
+    fun mapProfessionDtoProfession(professionDto: ProfessionDto) = Profession(
+        value = professionDto.value ?: Profession.UNKNOWN_VALUE
+    )
+
+    fun mapListProfessionDtoToListProfession(list: List<ProfessionDto>) = list.map {
+        mapProfessionDtoProfession(it)
+    }
 
     fun mapListCountriesDtoCountries(listCountriesDto: List<CountriesDto>) = listCountriesDto.map {
         mapCountriesDtoCountries(it)
@@ -91,13 +113,12 @@ class DtoMapper{
     }
 
     fun mapListSimilarMovieDtoSimilarMovie(listSimilarMovieDto: List<SimilarMovieDto>) : List<SimilarMovie> {
-        if (listSimilarMovieDto.isNotEmpty()){
-            return listSimilarMovieDto.map {
-                    mapSimilarMovieDtoSimilarMovie(it)
-                }
+        return if (listSimilarMovieDto.isNotEmpty()){
+            listSimilarMovieDto.map {
+                mapSimilarMovieDtoSimilarMovie(it)
             }
-        else
-            return emptyList()
+        } else
+            emptyList()
     }
 
     fun mapSimilarMovieDtoSimilarMovie(similarMovieDto: SimilarMovieDto) = SimilarMovie(

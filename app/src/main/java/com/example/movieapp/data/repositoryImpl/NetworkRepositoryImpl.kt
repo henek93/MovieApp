@@ -4,10 +4,9 @@ import android.util.Log
 import com.example.movieapp.data.mapper.DtoMapper
 import com.example.movieapp.data.network.api.ApiFactory
 import com.example.movieapp.domain.enteties.Actor
-import com.example.movieapp.domain.networkRepository.NetworkRepository
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.Trailer
-import java.lang.Error
+import com.example.movieapp.domain.networkRepository.NetworkRepository
 
 class NetworkRepositoryImpl : NetworkRepository {
 
@@ -17,7 +16,7 @@ class NetworkRepositoryImpl : NetworkRepository {
     override suspend fun getMovie(movieId: Int): Movie {
         val response = apiService.getMovie(movieId)
 
-        if (response.isSuccessful){
+        if (response.isSuccessful) {
             response.body()?.let {
                 return mapper.mapMovieDtoMovie(it)
             }
@@ -28,7 +27,7 @@ class NetworkRepositoryImpl : NetworkRepository {
     override suspend fun getMoviesTrailers(id: Int): List<Trailer> {
         val response = apiService.getMoviesTrailers(id)
 
-        if (response.isSuccessful){
+        if (response.isSuccessful) {
             response.body()?.let {
                 mapper.mapListTrailerDtoTrailer(it.trailerListDto.trailerDtos)
             }
@@ -42,9 +41,9 @@ class NetworkRepositoryImpl : NetworkRepository {
             limit
         )
 
-        if (response.isSuccessful){
+        if (response.isSuccessful) {
             response.body()?.let {
-                 return mapper.mapListMovieDtoMovie(it.docs)
+                return mapper.mapListMovieDtoMovie(it.docs)
             }
         }
         throw RuntimeException("Ошибка в получение данных по новым фильмам")
@@ -87,8 +86,13 @@ class NetworkRepositoryImpl : NetworkRepository {
     }
 
     override suspend fun getActor(actorId: Int): Actor {
-        TODO("Not yet implemented")
+        val response = apiService.getActor(actorId)
+
+        if (response.isSuccessful) {
+            response.body()?.let {
+                return mapper.mapActorDtoActor(it)
+            }
+        }
+        throw RuntimeException("Exception in get actor retrofit")
     }
-
-
 }

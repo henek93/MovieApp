@@ -38,5 +38,6 @@ interface ApiService {
     @GET("v1.4/movie/{id}?token=${ApiFactory.TOKEN}")
     suspend fun getMovie(@Path("id") id: Int): Response<MovieDto>
 
-    suspend fun getActor(): Response<ActorDto>
+    @GET("/v1.4/person/{id}?token=${ApiFactory.TOKEN}")
+    suspend fun getActor(@Path("id") actorId: Int): Response<ActorDto>
 }

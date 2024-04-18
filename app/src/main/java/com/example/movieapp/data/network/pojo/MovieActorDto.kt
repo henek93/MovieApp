@@ -1,10 +1,12 @@
 package com.example.movieapp.data.network.pojo
 
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ProfessionDto(
-    @SerializedName("value")
+data class MovieActorDto(
+    @SerializedName("id")
     @Expose
-    val value: String?
+    @PrimaryKey
+    val id: Int
 )
