@@ -200,17 +200,17 @@
             app:layout_constraintTop_toBottomOf="@id/movie_storyline_text" />
 
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/rw_actors"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:nestedScrollingEnabled="false"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/root_right_guideline"-->
-<!--            app:layout_constraintStart_toEndOf="@id/root_left_guideline"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/movie_cast_title_text"-->
-<!--            tools:listitem="@layout/view_holder_actor" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rw_actors"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toStartOf="@id/root_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/root_left_guideline"
+            app:layout_constraintTop_toBottomOf="@id/movie_cast_title_text"
+            tools:listitem="@layout/view_holder_actor" />
 
 <!--        <TextView-->
 <!--            android:id="@+id/text_same_movies"-->
