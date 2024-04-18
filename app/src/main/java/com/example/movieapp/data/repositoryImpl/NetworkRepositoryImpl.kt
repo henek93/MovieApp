@@ -3,6 +3,7 @@ package com.example.movieapp.data.repositoryImpl
 import android.util.Log
 import com.example.movieapp.data.mapper.DtoMapper
 import com.example.movieapp.data.network.api.ApiFactory
+import com.example.movieapp.domain.enteties.Actor
 import com.example.movieapp.domain.networkRepository.NetworkRepository
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.Trailer
@@ -83,6 +84,10 @@ class NetworkRepositoryImpl : NetworkRepository {
             }
         }
         throw RuntimeException("excaprion in repositoryImpl with response")
+    }
+
+    override suspend fun getActor(actorId: Int): Actor {
+        TODO("Not yet implemented")
     }
 
 

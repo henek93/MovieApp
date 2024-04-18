@@ -1,6 +1,7 @@
 package com.example.movieapp.data.network.api
 
 import androidx.lifecycle.LiveData
+import com.example.movieapp.data.network.pojo.ActorDto
 import com.example.movieappkotlin.pojo.MovieDto
 import com.example.movieappkotlin.pojo.MovieSourceDto
 import com.example.movieappkotlin.pojo.VideosDto
@@ -36,4 +37,6 @@ interface ApiService {
 
     @GET("v1.4/movie/{id}?token=${ApiFactory.TOKEN}")
     suspend fun getMovie(@Path("id") id: Int): Response<MovieDto>
+
+    suspend fun getActor(): Response<ActorDto>
 }

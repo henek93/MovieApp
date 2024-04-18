@@ -1,6 +1,7 @@
 package com.example.movieapp.data.network.pojo
 
 import androidx.room.PrimaryKey
+import com.example.movieappkotlin.pojo.MovieDto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -13,13 +14,21 @@ data class ActorDto(
 
     @SerializedName("photo")
     @Expose
-    val photoUrl: String? = null,
+    val photoUrl: String?,
 
     @SerializedName("name")
     @Expose
-    val name: String? = null,
+    val name: String?,
 
-    @SerializedName("description")
+    @SerializedName("profession")
     @Expose
-    val description: String? = null
+    val listProfessionDto: ProfessionDto,
+
+    @SerializedName("birthday")
+    @Expose
+    val birthday: String?,
+
+    @SerializedName("movies")
+    @Expose
+    val listMovieDto: List<MovieDto>
 )

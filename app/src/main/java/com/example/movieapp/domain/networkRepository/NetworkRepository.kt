@@ -1,5 +1,6 @@
 package com.example.movieapp.domain.networkRepository
 
+import com.example.movieapp.domain.enteties.Actor
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.Trailer
 
@@ -14,4 +15,6 @@ interface NetworkRepository {
     suspend fun getListMoviesWithGenre(genreName: String, page: Int, limit: Int): List<Movie>
 
     suspend fun getTopListMovies(list: String, page: Int, limit: Int): List<Movie>
+
+    suspend fun getActor(actorId: Int): Actor
 }
