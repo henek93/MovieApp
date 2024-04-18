@@ -16,5 +16,8 @@ data class Actor(
         const val UNKNOWN_NAME = "Неизвестное имя актера"
         const val UNKNOWN_PHOTO = "https://www.riakchr.ru/upload/iblock/39d/uavmacl6tbi2jttr09ah6csd1zlt1bbg.jpg"
         const val UNKNOWN_BIRTH = "Дата рождения неизвестна"
+
+        fun convertData(data: String) = data.substring(0, 10).split('-').asReversed().joinToString(".")
+
     }
 }
