@@ -53,7 +53,6 @@ class ActorFragment : Fragment() {
 
     private fun loadData(){
         viewModel.getActor(args.actorId)
-        viewModel.getListMove()
     }
 
 
@@ -69,6 +68,8 @@ class ActorFragment : Fragment() {
                 actorNameText.text = it.name
                 textBearthday.text = Actor.convertData(it.dateOfBirth)
                 actorJobsText.text = it.listProfession.joinToString(", ") { it.value }
+
+                viewModel.getListMove()
             }
         }
 
