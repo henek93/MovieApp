@@ -1,9 +1,9 @@
-package com.example.movieapp.domain.useCases
+package com.example.movieapp.domain.useCases.networkUseCases
 
-import com.example.movieapp.domain.MovieRepository
+import com.example.movieapp.domain.networkRepository.NetworkRepository
 
 class GetListMoviesWithGenreUseCase(
-    private val repository: MovieRepository
+    private val repository: NetworkRepository
 ) {
 
     suspend fun getTopMoviesWithGenre(genreName: String, page: Int, limit: Int) =

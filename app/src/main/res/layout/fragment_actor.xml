@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".presentation.ui.actor.ActorFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/spacing_4x">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/root_left_guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/spacing_4x"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/root_right_guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_end="@dimen/spacing_4x" />
+
+        <LinearLayout
+            android:id="@+id/back_button_actor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical|start"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/spacing_2x"
+            android:paddingBottom="@dimen/spacing_2x"
+            app:layout_constraintEnd_toStartOf="@id/root_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/root_left_guideline"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:src="@drawable/ic_back"
+                app:tint="@color/color_white"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/back_button_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_2x"
+                android:gravity="center_vertical"
+                android:text="@string/back"
+                android:layout_weight="3"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_size_sub_title" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/actor_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:paddingTop="9dp"
+            app:layout_constraintStart_toStartOf="@id/root_left_guideline"
+            app:layout_constraintTop_toBottomOf="@id/back_button_actor"
+            app:layout_constraintBottom_toTopOf="@id/root_center_guideline"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/orig" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            app:layout_constraintEnd_toStartOf="@+id/root_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/actor_photo"
+            app:layout_constraintTop_toTopOf="@id/actor_photo">
+
+            <TextView
+                android:id="@+id/actor_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_size_headline"
+                android:textStyle="bold"
+                tools:text="Франсуа Клюзе" />
+
+            <TextView
+                android:id="@+id/text_bearthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14.11.2003"
+                android:textSize="@dimen/text_size_sub_title"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/gray_dark"
+                />
+
+            <TextView
+                android:id="@+id/actor_jobs_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1x"
+                android:textColor="@color/pink_dark"
+                android:textSize="@dimen/text_size_sub_title"
+                app:layout_constraintEnd_toStartOf="@+id/root_right_guideline"
+                app:layout_constraintStart_toStartOf="@id/movie_name_text"
+                app:layout_constraintTop_toBottomOf="@id/movie_name_text"
+                tools:text="Action, Fiction" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/root_center_guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/actor_best_movies_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_6x"
+            android:text="@string/best_films"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_size_sub_title"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/root_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/root_left_guideline"
+            app:layout_constraintTop_toBottomOf="@id/root_center_guideline" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_actor"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:nestedScrollingEnabled="false"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/mediarouter_chooser_list_item_padding_top"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toStartOf="@+id/root_right_guideline"
+            app:layout_constraintStart_toStartOf="@+id/root_left_guideline"
+            app:layout_constraintTop_toBottomOf="@id/actor_best_movies_text"
+            tools:listitem="@layout/view_holder_movie" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

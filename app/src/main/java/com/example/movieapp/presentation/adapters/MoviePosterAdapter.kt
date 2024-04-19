@@ -1,16 +1,23 @@
 package com.example.movieapp.presentation.adapters
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.ListAdapter
+import com.bumptech.glide.Glide
 import com.example.movieapp.R
 import com.example.movieapp.domain.enteties.Movie
-import com.example.movieapp.presentation.callBacks.MoviePosterDiffCallback
+import com.example.movieapp.domain.enteties.MoviePoster
+import com.example.movieapp.presentation.adapters.callBacks.MoviePosterDiffCallback
 import com.example.movieapp.presentation.viewHolders.MoviePosterViewHolder
 import com.squareup.picasso.Picasso
 
-class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePosterDiffCallback()) {
+class MoviePosterAdapter : ListAdapter<MoviePoster, MoviePosterViewHolder>(MoviePosterDiffCallback()) {
 
+    var onPosterClickListener: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviePosterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie, parent, false)
@@ -39,27 +46,21 @@ class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePoster
             pgText.text = movie.rating.toString()
             pgText.setBackgroundResource(resId)
 
-            Picasso.get()
+            Glide.with(holder.view.context)
+                .asBitmap()
                 .load(urlPoster)
-                .resize(300, 400)
+                .fitCenter()
                 .into(poster)
+
 
             filmNameText.text = movie.name
         }
 
-
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        val item = getItem(position)
-        return if (item.rating.rating >= 9.5) {
-            GREEN_RAITING
-         } else if(item.rating.rating >= 8.0){
-             ORANGE_RAITING
-         }else{
-             RED_RAITING
+        holder.view.setOnClickListener {
+            onPosterClickListener?.invoke(movie.id)
         }
     }
+
 
     companion object {
 
