@@ -2,6 +2,8 @@ package com.example.movieapp.data.network.api
 
 import androidx.lifecycle.LiveData
 import com.example.movieapp.data.network.pojo.ActorDto
+import com.example.movieapp.data.network.pojo.MoviePosterDto
+import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieappkotlin.pojo.MovieDto
 import com.example.movieappkotlin.pojo.MovieSourceDto
 import com.example.movieappkotlin.pojo.VideosDto
@@ -19,17 +21,17 @@ interface ApiService {
     @GET("v1.4/movie/{id}?token=HSDF43E-YJH4D72-NQ89AHR-36KDFV3")
     suspend fun getMoviesTrailers(@Path("id") id:Int): Response<VideosDto>
 
-    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=rating&selectFields=description&selectFields=year&selectFields=poster&selectFields=ageRating&selectFields=type&selectFields=genres&selectFields=countries&selectFields=persons&selectFields=similarMovies&selectFields=backdrop&selectFields=logo&sortField=rating.kp&sortType=-1&notNullFields=description&notNullFields=poster.url&notNullFields=backdrop.url&notNullFields=logo.url")
+    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=rating&selectFields=description&selectFields=year&selectFields=poster&selectFields=ageRating&selectFields=type&selectFields=genres&selectFields=countries&selectFields=persons&selectFields=similarMovies&selectFields=backdrop&selectFields=logo&sortField=rating.kp&sortType=-1&notNullFields=description&notNullFields=poster.url&notNullFields=backdrop.url&notNullFields=logo.url&selectField=persons")
     suspend fun getListNewMovies(@Query("page") page: Int,
                                 @Query("limit") limit: Int): Response<MovieSourceDto>
 
-    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=rating&selectFields=description&selectFields=year&selectFields=poster&selectFields=ageRating&selectFields=type&selectFields=genres&selectFields=countries&selectFields=persons&selectFields=similarMovies&selectFields=backdrop&selectFields=logo&sortField=rating.kp&sortType=-1&notNullFields=description&notNullFields=poster.url&notNullFields=backdrop.url&notNullFields=logo.url")
+    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=rating&selectFields=description&selectFields=year&selectFields=poster&selectFields=ageRating&selectFields=type&selectFields=genres&selectFields=countries&selectFields=persons&selectFields=similarMovies&selectFields=backdrop&selectFields=logo&sortField=rating.kp&sortType=-1&notNullFields=description&notNullFields=poster.url&notNullFields=backdrop.url&notNullFields=logo.url&selectField=persons")
     suspend fun getListMoviesWithGenre(
         @Query("genres.name") genreName: String,
         @Query("page") page: Int,
         @Query("limit") limit: Int): Response<MovieSourceDto>
 
-    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=rating&selectFields=description&selectFields=year&selectFields=poster&selectFields=ageRating&selectFields=type&selectFields=genres&selectFields=countries&selectFields=persons&selectFields=similarMovies&selectFields=backdrop&selectFields=logo&sortField=rating.kp&sortType=-1")
+    @GET("v1.4/movie?token=${ApiFactory.TOKEN}&selectFields=id&selectFields=name&selectFields=rating&selectFields=description&selectFields=year&selectFields=poster&selectFields=ageRating&selectFields=type&selectFields=genres&selectFields=countries&selectFields=persons&selectFields=similarMovies&selectFields=backdrop&selectFields=logo&sortField=rating.kp&sortType=-1&selectField=persons")
     suspend fun getTopListMovies(
         @Query("lists") lists: String,
         @Query("page") page: Int,
@@ -40,4 +42,7 @@ interface ApiService {
 
     @GET("/v1.4/person/{id}?token=${ApiFactory.TOKEN}")
     suspend fun getActor(@Path("id") actorId: Int): Response<ActorDto>
+
+    @GET("v1.4/movie/{id}?token=${ApiFactory.TOKEN}")
+    suspend fun getMoviePoster(@Path("id") id: Int): Response<MoviePosterDto>
 }

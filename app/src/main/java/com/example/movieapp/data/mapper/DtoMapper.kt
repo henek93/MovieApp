@@ -1,20 +1,24 @@
 package com.example.movieapp.data.mapper
 
 import com.example.movieapp.data.network.pojo.ActorDto
+import com.example.movieapp.data.network.pojo.ActorPosterDto
 import com.example.movieapp.data.network.pojo.BackdropDto
 import com.example.movieapp.data.network.pojo.CountriesDto
 import com.example.movieapp.data.network.pojo.GenreDto
 import com.example.movieapp.data.network.pojo.LogoDto
 import com.example.movieapp.data.network.pojo.MovieActorDto
+import com.example.movieapp.data.network.pojo.MoviePosterDto
 import com.example.movieapp.data.network.pojo.ProfessionDto
 import com.example.movieapp.data.network.pojo.SimilarMovieDto
 import com.example.movieapp.domain.enteties.Actor
+import com.example.movieapp.domain.enteties.ActorPoster
 import com.example.movieapp.domain.enteties.Backdrop
 import com.example.movieapp.domain.enteties.Countries
 import com.example.movieapp.domain.enteties.Genre
 import com.example.movieapp.domain.enteties.Logo
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.MovieActor
+import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.domain.enteties.Poster
 import com.example.movieapp.domain.enteties.Profession
 import com.example.movieapp.domain.enteties.Rating
@@ -38,11 +42,37 @@ class DtoMapper{
         type = movieDto.type ?: Movie.UNKNOWN_TYPE,
         genres = mapListGenreDtoGener(movieDto.genres),
         countries = mapListCountriesDtoCountries(movieDto.countries),
-        actors = mapListActorsDtoActors(movieDto.actors),
+        actors = mapListActorPosterDtoListActorPoster(movieDto.actors),
         similarMovies = mapListSimilarMovieDtoSimilarMovie(movieDto.similarMovies),
         backdrop = mapBackdropDtoBackDrop(movieDto.backdrop),
         logo = mapLogoDtoLogo(movieDto.logo)
     )
+
+    fun mapMoviePosterDtoMoviePoster(moviePosterDto: MoviePosterDto) = MoviePoster(
+        id = moviePosterDto.id,
+        name = moviePosterDto.name ?: Movie.UNKNOWN_NAME,
+        poster = mapPosterDtoPoster(moviePosterDto.poster),
+        rating = mapRaitingDtoRaiting(moviePosterDto.rating),
+        isFavourite = false,
+        pgRating = moviePosterDto.pgRating ?: Movie.UNKNOWN_PG_RATING,
+        backdrop = mapBackdropDtoBackDrop(moviePosterDto.backdrop),
+        logo = mapLogoDtoLogo(moviePosterDto.logo),
+        description = moviePosterDto.description ?: Movie.UNKNOWN_DESCRIPTION
+    )
+
+    fun mapActorPosterDtoActorPoster(actorPosterDto: ActorPosterDto) = ActorPoster(
+        id = actorPosterDto.id,
+        name = actorPosterDto.name ?: Actor.UNKNOWN_NAME,
+        photoUrl = actorPosterDto.photoUrl ?: Actor.UNKNOWN_PHOTO
+    )
+
+    fun mapListActorPosterDtoListActorPoster(list: List<ActorPosterDto>) = list.map {
+        mapActorPosterDtoActorPoster(it)
+    }
+
+    fun mapListMoviePosterDtoMoviePoster(list: List<MoviePosterDto>) = list.map {
+        mapMoviePosterDtoMoviePoster(it)
+    }
 
     fun mapTrailerDtoTrailer(trailerDto: TrailerDto) = Trailer(
         url = trailerDto.url ?: Trailer.UNKNOWN_URL,

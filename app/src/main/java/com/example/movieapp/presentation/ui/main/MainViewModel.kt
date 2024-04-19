@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.data.repositoryImpl.NetworkRepositoryImpl
 import com.example.movieapp.domain.enteties.Movie
+import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.domain.useCases.networkUseCases.GetListMoviesWithGenreUseCase
 import com.example.movieapp.domain.useCases.networkUseCases.GetListNewMoviesUseCase
 import com.example.movieapp.domain.useCases.networkUseCases.GetTopListMoviesUseCase
@@ -18,20 +19,20 @@ class MainViewModel : ViewModel() {
     private val getNewListMoviesUseCase = GetListNewMoviesUseCase(repository)
     private val getListMoviesWithGenreUseCase = GetListMoviesWithGenreUseCase(repository)
 
-    private val _pagerMovieList = MutableLiveData<List<Movie>>()
-    val pagerMovieList: LiveData<List<Movie>>
+    private val _pagerMovieList = MutableLiveData<List<MoviePoster>>()
+    val pagerMovieList: LiveData<List<MoviePoster>>
         get() = _pagerMovieList
 
-    private val _rwMovieList1 = MutableLiveData<List<Movie>>()
-    val rwMovieList1: LiveData<List<Movie>>
+    private val _rwMovieList1 = MutableLiveData<List<MoviePoster>>()
+    val rwMovieList1: LiveData<List<MoviePoster>>
         get() = _rwMovieList1
 
-    private val _rwMovieList2 = MutableLiveData<List<Movie>>()
-    val rwMovieList2: LiveData<List<Movie>>
+    private val _rwMovieList2 = MutableLiveData<List<MoviePoster>>()
+    val rwMovieList2: LiveData<List<MoviePoster>>
         get() = _rwMovieList2
 
-    private val _rwMovieList3 = MutableLiveData<List<Movie>>()
-    val rwMovieList3: LiveData<List<Movie>>
+    private val _rwMovieList3 = MutableLiveData<List<MoviePoster>>()
+    val rwMovieList3: LiveData<List<MoviePoster>>
         get() = _rwMovieList3
 
 

@@ -2,6 +2,7 @@ package com.example.movieappkotlin.pojo
 
 import androidx.room.PrimaryKey
 import com.example.movieapp.data.network.pojo.ActorDto
+import com.example.movieapp.data.network.pojo.ActorPosterDto
 import com.example.movieapp.data.network.pojo.BackdropDto
 import com.example.movieapp.data.network.pojo.CountriesDto
 import com.example.movieapp.data.network.pojo.GenreDto
@@ -55,7 +56,7 @@ data class MovieDto(
 
     @SerializedName("persons")
     @Expose
-    val actors: List<ActorDto>,
+    val actors: List<ActorPosterDto>,
 
     @SerializedName("similarMovies")
     @Expose

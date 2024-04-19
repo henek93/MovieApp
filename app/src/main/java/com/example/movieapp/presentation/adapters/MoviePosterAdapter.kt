@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.example.movieapp.R
 import com.example.movieapp.domain.enteties.Movie
+import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.presentation.adapters.callBacks.MoviePosterDiffCallback
 import com.example.movieapp.presentation.viewHolders.MoviePosterViewHolder
 import com.squareup.picasso.Picasso
 
-class MoviePosterAdapter : ListAdapter<Movie, MoviePosterViewHolder>(MoviePosterDiffCallback()) {
+class MoviePosterAdapter : ListAdapter<MoviePoster, MoviePosterViewHolder>(MoviePosterDiffCallback()) {
 
     var onPosterClickListener: ((Int) -> Unit)? = null
 

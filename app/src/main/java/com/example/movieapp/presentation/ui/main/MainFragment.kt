@@ -96,6 +96,12 @@ class MainFragment : Fragment() {
             adapterRw3 = MoviePosterAdapter()
             adapter = adapterRw3
         }
+
+        with(binding){
+            recyclerView1.setHasFixedSize(true)
+            recyclerView2.setHasFixedSize(true)
+            recyclerView3.setHasFixedSize(true)
+        }
     }
 
     private fun observeViewModel() {

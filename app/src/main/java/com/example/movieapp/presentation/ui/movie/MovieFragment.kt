@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.movieapp.databinding.FragmentMovieBinding
-import com.example.movieapp.domain.enteties.Movie
+import com.example.movieapp.presentation.adapters.ActorAdapter
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.squareup.picasso.Picasso
 
@@ -21,6 +23,10 @@ class MovieFragment : Fragment() {
 
     private val viewModel by lazy {
         ViewModelProvider(this)[MovieViewModel::class.java]
+    }
+
+    private val actorAdapter by lazy {
+        ActorAdapter()
     }
 
     private val similarMoviesAdapter by lazy {
@@ -39,16 +45,40 @@ class MovieFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        getCurrentFilm()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getCurrentFilm()
         observeViewModel()
+        setRecyclerViews()
+        setOnItemClickListeners()
+    }
+
+    private fun setOnItemClickListeners() {
+        setOnActorClickListener()
+    }
+
+    private fun setRecyclerViews() {
+        with(binding.rwActors){
+            adapter = actorAdapter
+        }
     }
 
     private fun getCurrentFilm() {
         viewModel.getCurrentMovie(args.movieid)
+    }
+
+    private fun setOnActorClickListener(){
+        actorAdapter.onActorClickListener = {
+            findNavController().navigate(
+                MovieFragmentDirections.actionMovieFragmentToActorFragment(it)
+            )
+        }
     }
 
 
@@ -59,22 +89,17 @@ class MovieFragment : Fragment() {
                     .load(it.poster.url)
                     .into(moviePosterImage)
 
-                movieAgeRestrictionsText.text = it.pgRating.toString()
+                movieAgeRestrictionsText.text = "${it.pgRating}+"
                 movieNameText.text = it.name
-                movieGenresText.text = it.genres.joinToString(",")
+                movieGenresText.text = it.genres.joinToString(",") { it.name }
                 ratingBar.rating = (it.rating.rating / 5).toFloat()
                 movieStorylineText.text = it.description
 
+                actorAdapter.submitList(it.actors)
 //                recyclerMovies.adapter = similarMoviesAdapter
 //                similarMoviesAdapter.submitList(it.similarMovies)
             }
         }
-    }
-
-    companion object {
-
-        const val MOVIE_ID = "movie_id"
-
     }
 
     override fun onDestroyView() {

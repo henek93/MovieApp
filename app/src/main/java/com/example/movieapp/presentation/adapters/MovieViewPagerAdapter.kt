@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.movieapp.R
 import com.example.movieapp.domain.enteties.Movie
+import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.presentation.adapters.callBacks.MoviePagerDiffCallback
 import com.squareup.picasso.Picasso
 
 
-class MovieViewPagerAdapter : ListAdapter<Movie, MovieViewPagerAdapter.PagerVh>(MoviePagerDiffCallback()) {
+class MovieViewPagerAdapter : ListAdapter<MoviePoster, MovieViewPagerAdapter.PagerVh>(MoviePagerDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVh {
         return PagerVh(

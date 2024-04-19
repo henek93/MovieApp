@@ -11,7 +11,7 @@ data class Movie(
     val type: String,
     val genres: List<Genre>,
     val countries: List<Countries>,
-    val actors: List<Actor>,
+    val actors: List<ActorPoster>,
     val similarMovies: List<SimilarMovie>,
     val backdrop: Backdrop,
     val logo: Logo

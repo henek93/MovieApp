@@ -10,14 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/spacing_4x">
+        android:paddingTop="@dimen/spacing_4x">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/root_left_guideline"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="395dp"
+            app:layout_constraintGuide_begin="@dimen/spacing_4x"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -65,7 +65,7 @@
         <ImageView
             android:id="@+id/actor_photo"
             android:layout_width="wrap_content"
-            android:layout_height="260dp"
+            android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:paddingTop="9dp"
             app:layout_constraintStart_toStartOf="@id/root_left_guideline"

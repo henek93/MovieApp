@@ -4,7 +4,9 @@ import android.util.Log
 import com.example.movieapp.data.mapper.DtoMapper
 import com.example.movieapp.data.network.api.ApiFactory
 import com.example.movieapp.domain.enteties.Actor
+import com.example.movieapp.domain.enteties.ActorPoster
 import com.example.movieapp.domain.enteties.Movie
+import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.domain.enteties.Trailer
 import com.example.movieapp.domain.networkRepository.NetworkRepository
 
@@ -35,7 +37,7 @@ class NetworkRepositoryImpl : NetworkRepository {
         throw RuntimeException("Ошибка в получении трейлеров")
     }
 
-    override suspend fun getListNewMovies(page: Int, limit: Int): List<Movie> {
+    override suspend fun getListNewMovies(page: Int, limit: Int): List<MoviePoster> {
         val response = apiService.getListNewMovies(
             page,
             limit
@@ -43,7 +45,7 @@ class NetworkRepositoryImpl : NetworkRepository {
 
         if (response.isSuccessful) {
             response.body()?.let {
-                return mapper.mapListMovieDtoMovie(it.docs)
+                return mapper.mapListMoviePosterDtoMoviePoster(it.docs)
             }
         }
         throw RuntimeException("Ошибка в получение данных по новым фильмам")
@@ -53,7 +55,7 @@ class NetworkRepositoryImpl : NetworkRepository {
         genreName: String,
         page: Int,
         limit: Int
-    ): List<Movie> {
+    ): List<MoviePoster> {
         val response = apiService.getListMoviesWithGenre(
             genreName = genreName,
             page = page,
@@ -62,14 +64,14 @@ class NetworkRepositoryImpl : NetworkRepository {
         if (response.isSuccessful) {
             response.body()?.let {
                 Log.d("NeteworkRepositoryImpl", it.docs.toString())
-                return mapper.mapListMovieDtoMovie(it.docs)
+                return mapper.mapListMoviePosterDtoMoviePoster(it.docs)
             }
             Log.d("NeteworkRepositoryImpl", response.message())
         }
         throw RuntimeException("Ошибка в получение данных по жанру ${genreName} ")
     }
 
-    override suspend fun getTopListMovies(list: String, page: Int, limit: Int): List<Movie> {
+    override suspend fun getTopListMovies(list: String, page: Int, limit: Int): List<MoviePoster> {
         val response =
             apiService.getTopListMovies(
                 list,
@@ -79,7 +81,7 @@ class NetworkRepositoryImpl : NetworkRepository {
 
         if (response.isSuccessful) {
             response.body()?.let {
-                return mapper.mapListMovieDtoMovie(it.docs)
+                return mapper.mapListMoviePosterDtoMoviePoster(it.docs)
             }
         }
         throw RuntimeException("excaprion in repositoryImpl with response")
@@ -95,4 +97,17 @@ class NetworkRepositoryImpl : NetworkRepository {
         }
         throw RuntimeException("Exception in get actor retrofit")
     }
+
+    override suspend fun getMoviePoster(movieId: Int): MoviePoster {
+        val response = apiService.getMoviePoster(movieId)
+
+        if (response.isSuccessful){
+            response.body()?.let {
+                return mapper.mapMoviePosterDtoMoviePoster(it)
+            }
+        }
+        throw RuntimeException("Exception in get movie poster")
+    }
+
+
 }
