@@ -83,13 +83,13 @@ class DtoMapper{
         mapTrailerDtoTrailer(it)
     }
 
-    fun mapLogoDtoLogo(logoDto: LogoDto) = Logo(
-        url = logoDto.url ?: Logo.UNKNOWN_URL
+    fun mapLogoDtoLogo(logoDto: LogoDto?) = Logo(
+        url = logoDto?.url ?: Logo.UNKNOWN_URL
     )
 
-    fun mapBackdropDtoBackDrop(backdropDto: BackdropDto) = Backdrop(
-        url = backdropDto.url ?: Backdrop.UNKNOWN_PHOTO,
-        previewUrl = backdropDto.previewUrl ?: Backdrop.UNKNOWN_PREVIEW_URL
+    fun mapBackdropDtoBackDrop(backdropDto: BackdropDto?) = Backdrop(
+        url = backdropDto?.url ?: Backdrop.UNKNOWN_PHOTO,
+        previewUrl = backdropDto?.previewUrl ?: Backdrop.UNKNOWN_PREVIEW_URL
     )
 
 

@@ -7,6 +7,7 @@ import com.example.movieapp.data.network.pojo.BackdropDto
 import com.example.movieapp.data.network.pojo.CountriesDto
 import com.example.movieapp.data.network.pojo.GenreDto
 import com.example.movieapp.data.network.pojo.LogoDto
+import com.example.movieapp.data.network.pojo.MoviePosterDto
 import com.example.movieapp.data.network.pojo.SimilarMovieDto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

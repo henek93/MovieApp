@@ -13,6 +13,7 @@ import com.example.movieapp.databinding.FragmentMovieBinding
 import com.example.movieapp.presentation.adapters.ActorAdapter
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.coroutineScope
 
 
 class MovieFragment : Fragment() {
@@ -67,10 +68,15 @@ class MovieFragment : Fragment() {
         with(binding.rwActors){
             adapter = actorAdapter
         }
+
+        with(binding.rwSimilarMovies){
+            adapter = similarMoviesAdapter
+        }
     }
 
     private fun getCurrentFilm() {
         viewModel.getCurrentMovie(args.movieid)
+
     }
 
     private fun setOnActorClickListener(){
@@ -92,13 +98,17 @@ class MovieFragment : Fragment() {
                 movieAgeRestrictionsText.text = "${it.pgRating}+"
                 movieNameText.text = it.name
                 movieGenresText.text = it.genres.joinToString(",") { it.name }
-                ratingBar.rating = (it.rating.rating / 5).toFloat()
+                ratingBar.rating = (it.rating.rating.toFloat() / 5)
                 movieStorylineText.text = it.description
 
                 actorAdapter.submitList(it.actors)
-//                recyclerMovies.adapter = similarMoviesAdapter
-//                similarMoviesAdapter.submitList(it.similarMovies)
+
+                viewModel.getListSimilarMovie()
             }
+        }
+
+        viewModel.listSimilarMovie.observe(viewLifecycleOwner){
+            similarMoviesAdapter.submitList(it)
         }
     }
 
