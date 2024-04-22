@@ -33,9 +33,9 @@ data class MoviePosterDto(
     val pgRating: Int?,
     @SerializedName("backdrop")
     @Expose
-    val backdrop: BackdropDto,
+    val backdrop: BackdropDto?,
 
     @SerializedName("logo")
     @Expose
-    val logo: LogoDto
+    val logo: LogoDto?
 ): Serializable

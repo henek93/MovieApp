@@ -195,6 +195,7 @@
             android:textColor="@color/color_white"
             android:textSize="@dimen/text_size_sub_title"
             android:textStyle="bold"
+            android:paddingTop="@dimen/spacing_1x"
             app:layout_constraintEnd_toStartOf="@id/root_right_guideline"
             app:layout_constraintStart_toEndOf="@id/root_left_guideline"
             app:layout_constraintTop_toBottomOf="@id/movie_storyline_text" />
@@ -212,30 +213,31 @@
             app:layout_constraintTop_toBottomOf="@id/movie_cast_title_text"
             tools:listitem="@layout/view_holder_actor" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_same_movies"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/spacing_6x"-->
-<!--            android:text="@string/same_movies"-->
-<!--            android:textColor="@color/color_white"-->
-<!--            android:textSize="@dimen/text_size_sub_title"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/root_right_guideline"-->
-<!--            app:layout_constraintStart_toEndOf="@id/root_left_guideline"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/movie_cast_title_text" />-->
+        <TextView
+            android:id="@+id/text_same_movies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_6x"
+            android:text="@string/same_movies"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_size_sub_title"
+            android:textStyle="bold"
+            android:paddingTop="@dimen/spacing_1x"
+            app:layout_constraintEnd_toStartOf="@id/root_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/root_left_guideline"
+            app:layout_constraintTop_toBottomOf="@id/rw_actors" />
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_movies"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="250dp"-->
-<!--            android:nestedScrollingEnabled="false"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/root_right_guideline"-->
-<!--            app:layout_constraintStart_toEndOf="@id/root_left_guideline"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/text_same_movies"-->
-<!--            tools:listitem="@layout/view_holder_movie" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rw_similar_movies"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:nestedScrollingEnabled="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toStartOf="@id/root_right_guideline"
+            app:layout_constraintStart_toEndOf="@id/root_left_guideline"
+            app:layout_constraintTop_toBottomOf="@id/text_same_movies"
+            tools:listitem="@layout/view_holder_movie" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

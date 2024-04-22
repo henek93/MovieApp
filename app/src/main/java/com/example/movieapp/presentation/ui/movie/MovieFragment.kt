@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -61,22 +60,36 @@ class MovieFragment : Fragment() {
 
     private fun setOnItemClickListeners() {
         setOnActorClickListener()
+        setOnMoviePosterClickListener()
     }
 
     private fun setRecyclerViews() {
         with(binding.rwActors){
             adapter = actorAdapter
         }
+
+        with(binding.rwSimilarMovies){
+            adapter = similarMoviesAdapter
+        }
     }
 
     private fun getCurrentFilm() {
         viewModel.getCurrentMovie(args.movieid)
+
     }
 
     private fun setOnActorClickListener(){
         actorAdapter.onActorClickListener = {
             findNavController().navigate(
-                MovieFragmentDirections.actionMovieFragmentToActorFragment(it)
+                MovieFragmentDirections.actionNavigationFragmentMovieToNavigationFragmentActor(it)
+            )
+        }
+    }
+
+    private fun setOnMoviePosterClickListener(){
+        similarMoviesAdapter.onPosterClickListener = {
+            findNavController().navigate(
+                MovieFragmentDirections.actionNavigationFragmentMovieSelf(it)
             )
         }
     }
@@ -92,13 +105,17 @@ class MovieFragment : Fragment() {
                 movieAgeRestrictionsText.text = "${it.pgRating}+"
                 movieNameText.text = it.name
                 movieGenresText.text = it.genres.joinToString(",") { it.name }
-                ratingBar.rating = (it.rating.rating / 5).toFloat()
+                ratingBar.rating = (it.rating.rating.toFloat() / 5)
                 movieStorylineText.text = it.description
 
                 actorAdapter.submitList(it.actors)
-//                recyclerMovies.adapter = similarMoviesAdapter
-//                similarMoviesAdapter.submitList(it.similarMovies)
+
+                viewModel.getListSimilarMovie()
             }
+        }
+
+        viewModel.listSimilarMovie.observe(viewLifecycleOwner){
+            similarMoviesAdapter.submitList(it)
         }
     }
 

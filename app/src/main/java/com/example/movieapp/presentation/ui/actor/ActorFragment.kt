@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.movieapp.databinding.FragmentActorBinding
@@ -53,7 +54,6 @@ class ActorFragment : Fragment() {
 
     private fun loadData(){
         viewModel.getActor(args.actorId)
-        viewModel.getListMove()
     }
 
 
@@ -69,6 +69,8 @@ class ActorFragment : Fragment() {
                 actorNameText.text = it.name
                 textBearthday.text = Actor.convertData(it.dateOfBirth)
                 actorJobsText.text = it.listProfession.joinToString(", ") { it.value }
+
+                viewModel.getListMove()
             }
         }
 
@@ -81,6 +83,15 @@ class ActorFragment : Fragment() {
         with(binding.recyclerViewActor){
             adapterMovie = MoviePosterAdapter()
             adapter = adapterMovie
+        }
+        setOnMovieClickListener()
+    }
+
+    private fun setOnMovieClickListener(){
+        adapterMovie.onPosterClickListener = {
+            findNavController().navigate(
+                ActorFragmentDirections.actionNavigationFragmentActorToNavigationFragmentMovie(it)
+            )
         }
     }
 

@@ -12,7 +12,6 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.adapters.MovieViewPagerAdapter
-import com.example.movieapp.presentation.ui.movie.MovieFragment
 import kotlin.math.abs
 
 class MainFragment : Fragment() {
@@ -37,7 +36,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         setupRecyclerView()
         loadData()
@@ -65,7 +63,7 @@ class MainFragment : Fragment() {
 
     private fun openMovieDescription(currentMovieId: Int) {
         findNavController().navigate(
-            MainFragmentDirections.actionMainFragmentToNavigationMovie(currentMovieId)
+            MainFragmentDirections.actionNavigationFragmentMainToNavigationFragmentMovie(currentMovieId)
         )
     }
 

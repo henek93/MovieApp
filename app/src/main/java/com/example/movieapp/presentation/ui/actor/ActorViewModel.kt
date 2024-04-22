@@ -37,13 +37,22 @@ class ActorViewModel() : ViewModel() {
     fun getListMove() {
         val listMovie = mutableListOf<MoviePoster>()
         actorLiveData.value?.let {
-            for (i in it.listMovies) {
-                viewModelScope.launch {
-                    listMovie.add(getMoviePosterUseCase.getMoviePoster(i.id))
+            if (it.listMovies.size < 5) {
+                for (i in it.listMovies) {
+                    viewModelScope.launch {
+                        listMovie.add(getMoviePosterUseCase.getMoviePoster(i.id))
+                        _listMovieActor.value = listMovie
+                    }
                 }
             }
-            _listMovieActor.value = listMovie.sortedBy { it.rating.rating }.reversed()
+            else {
+                for (i in 0 until 5) {
+                    viewModelScope.launch {
+                        listMovie.add(getMoviePosterUseCase.getMoviePoster(it.listMovies[i].id))
+                        _listMovieActor.value = listMovie
+                    }
+                }
+            }
         }
-
     }
 }
