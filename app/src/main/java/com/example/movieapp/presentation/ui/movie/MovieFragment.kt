@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.adapters.ViewBindingAdapter.setClickListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -13,7 +12,6 @@ import com.example.movieapp.databinding.FragmentMovieBinding
 import com.example.movieapp.presentation.adapters.ActorAdapter
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.coroutineScope
 
 
 class MovieFragment : Fragment() {
@@ -62,6 +60,7 @@ class MovieFragment : Fragment() {
 
     private fun setOnItemClickListeners() {
         setOnActorClickListener()
+        setOnMoviePosterClickListener()
     }
 
     private fun setRecyclerViews() {
@@ -82,7 +81,15 @@ class MovieFragment : Fragment() {
     private fun setOnActorClickListener(){
         actorAdapter.onActorClickListener = {
             findNavController().navigate(
-                MovieFragmentDirections.actionMovieFragmentToActorFragment(it)
+                MovieFragmentDirections.actionNavigationFragmentMovieToNavigationFragmentActor(it)
+            )
+        }
+    }
+
+    private fun setOnMoviePosterClickListener(){
+        similarMoviesAdapter.onPosterClickListener = {
+            findNavController().navigate(
+                MovieFragmentDirections.actionNavigationFragmentMovieSelf(it)
             )
         }
     }

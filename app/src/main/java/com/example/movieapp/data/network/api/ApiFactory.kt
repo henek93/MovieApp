@@ -8,7 +8,7 @@ object ApiFactory {
 
 //    HSDF43E-YJH4D72-NQ89AHR-36KDFV3
 //     JVB0KRX-ATF4T6E-J5RA425-Z2NDQS1
-    const val TOKEN = "HSDF43E-YJH4D72-NQ89AHR-36KDFV3"
+    const val TOKEN = "JVB0KRX-ATF4T6E-J5RA425-Z2NDQS1"
     const val LIST_TOP_250_NAME = "top250"
     const val GENRE_ADVENTURE = "приключения"
 
