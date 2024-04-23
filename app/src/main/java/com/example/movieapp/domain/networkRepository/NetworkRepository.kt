@@ -23,4 +23,6 @@ interface NetworkRepository {
     suspend fun getMoviePoster(movieId: Int): MoviePoster
 
 //    suspend fun getActorPoster(actorId: Int): ActorPoster
+
+    suspend fun getListMoviePosterByName(name: String): List<MoviePoster>
 }

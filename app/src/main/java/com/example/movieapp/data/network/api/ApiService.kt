@@ -1,13 +1,10 @@
 package com.example.movieapp.data.network.api
 
-import androidx.lifecycle.LiveData
 import com.example.movieapp.data.network.pojo.ActorDto
 import com.example.movieapp.data.network.pojo.MoviePosterDto
-import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieappkotlin.pojo.MovieDto
 import com.example.movieappkotlin.pojo.MovieSourceDto
 import com.example.movieappkotlin.pojo.VideosDto
-import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -40,9 +37,13 @@ interface ApiService {
     @GET("v1.4/movie/{id}?token=${ApiFactory.TOKEN}")
     suspend fun getMovie(@Path("id") id: Int): Response<MovieDto>
 
-    @GET("/v1.4/person/{id}?token=${ApiFactory.TOKEN}")
+    @GET("v1.4/person/{id}?token=${ApiFactory.TOKEN}")
     suspend fun getActor(@Path("id") actorId: Int): Response<ActorDto>
 
     @GET("v1.4/movie/{id}?token=${ApiFactory.TOKEN}")
     suspend fun getMoviePoster(@Path("id") id: Int): Response<MoviePosterDto>
+
+    @GET("v1.4/movie/search?token=${ApiFactory.TOKEN}&page=1&limit=30")
+    suspend fun getListMoviePosterByName(@Query("query") name: String): Response<List<MoviePosterDto>>
+
 }
