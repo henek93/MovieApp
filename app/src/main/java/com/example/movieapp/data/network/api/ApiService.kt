@@ -44,6 +44,6 @@ interface ApiService {
     suspend fun getMoviePoster(@Path("id") id: Int): Response<MoviePosterDto>
 
     @GET("v1.4/movie/search?token=${ApiFactory.TOKEN}&page=1&limit=30")
-    suspend fun getListMoviePosterByName(@Query("query") name: String): Response<List<MoviePosterDto>>
+    suspend fun getListMoviePosterByName(@Query("query") name: String): Response<MovieSourceDto>
 
 }

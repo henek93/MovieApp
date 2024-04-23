@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
-        android:backgroundTint="@color/gray_dark"
+        android:backgroundTint="@color/background_card_color"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -25,8 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:queryHint="Поиск фильмов"
+            android:queryBackground="@android:color/transparent"
             android:iconifiedByDefault="false"
-            android:queryBackground="@android:color/transparent" />
+            android:searchIcon="@drawable/ic_search_view"
+            android:theme="@style/SearchViewStyle" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -43,7 +45,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recycler_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_marginEnd="10dp"

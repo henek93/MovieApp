@@ -114,7 +114,7 @@ class NetworkRepositoryImpl : NetworkRepository {
 
         if (response.isSuccessful){
             response.body()?.let {
-                return mapper.mapListMoviePosterDtoMoviePoster(it)
+                return mapper.mapListMoviePosterDtoMoviePoster(it.docs)
             }
         }
         throw RuntimeException("Exception in get movie poster ${response.message()}")
