@@ -26,4 +26,9 @@
     <color name="background_color">#191926</color>
     <color name="background_card_color">#222232</color>
     <color name="stroke_card_color">#636375</color>
+
+
+    <color name="green_rating">#45FF10</color>
+    <color name="orange_rating">@android:color/holo_orange_light</color>
+    <color name="red_rating">@android:color/holo_red_light</color>
 </resources>
