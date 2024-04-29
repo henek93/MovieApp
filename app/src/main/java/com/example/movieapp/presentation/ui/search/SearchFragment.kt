@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentSearchBinding
 import com.example.movieapp.presentation.adapters.GridSpacingItemDecoration
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
+import com.example.movieapp.presentation.ui.movie.MovieFragment
 
 
 class SearchFragment : Fragment() {
@@ -45,8 +49,18 @@ class SearchFragment : Fragment() {
         setRecyclerView()
         viewModel.loadData()
         addQueryChangeListener()
+        setOnPosterClickListener()
+    }
 
-
+    private fun setOnPosterClickListener() {
+        adapterMoviePoster.onPosterClickListener = {
+            val args = bundleOf(
+                MovieFragment.MOVIE_ID_KEY to it
+            )
+            findNavController().navigate(
+                R.id.action_navigation_fragment_search_to_nav_movie_and_actor, args
+            )
+        }
     }
 
     private fun observeViewModel() {

@@ -1,22 +1,23 @@
 package com.example.movieapp.presentation.ui.actor
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentActorBinding
 import com.example.movieapp.domain.enteties.Actor
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
+import com.example.movieapp.presentation.ui.movie.MovieFragment
 
 
 class ActorFragment : Fragment() {
-
-    private val args by navArgs<ActorFragmentArgs>()
 
     private var _binding: FragmentActorBinding? = null
 
@@ -29,6 +30,8 @@ class ActorFragment : Fragment() {
     }
 
     private lateinit var adapterMovie: MoviePosterAdapter
+
+    private var actorId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,15 @@ class ActorFragment : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        parseArgs()
+    }
+
+    private fun parseArgs() {
+        actorId = requireArguments().getInt(ACTOR_ID_KEY)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,7 +65,7 @@ class ActorFragment : Fragment() {
     }
 
     private fun loadData(){
-        viewModel.getActor(args.actorId)
+        actorId?.let { viewModel.getActor(it) }
     }
 
 
@@ -89,8 +101,11 @@ class ActorFragment : Fragment() {
 
     private fun setOnMovieClickListener(){
         adapterMovie.onPosterClickListener = {
+            val args = bundleOf(
+                MovieFragment.MOVIE_ID_KEY to it
+            )
             findNavController().navigate(
-                ActorFragmentDirections.actionNavigationFragmentActorToNavigationFragmentMovie(it)
+                R.id.action_actorFragment_to_movieFragment, args
             )
         }
     }
@@ -98,5 +113,10 @@ class ActorFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+
+        const val ACTOR_ID_KEY = "actor id key"
     }
 }
