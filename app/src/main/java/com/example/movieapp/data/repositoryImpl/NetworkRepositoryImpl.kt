@@ -48,7 +48,7 @@ class NetworkRepositoryImpl : NetworkRepository {
                 return mapper.mapListMoviePosterDtoMoviePoster(it.docs)
             }
         }
-        throw RuntimeException("Ошибка в получение данных по новым фильмам")
+        throw RuntimeException("Ошибка в получение данных по новым фильмам ${response.message()}")
     }
 
     override suspend fun getListMoviesWithGenre(
@@ -84,7 +84,7 @@ class NetworkRepositoryImpl : NetworkRepository {
                 return mapper.mapListMoviePosterDtoMoviePoster(it.docs)
             }
         }
-        throw RuntimeException("excaprion in repositoryImpl with response")
+        throw RuntimeException("excaprion in repositoryImpl with response ${response.message()}")
     }
 
     override suspend fun getActor(actorId: Int): Actor {
@@ -95,7 +95,7 @@ class NetworkRepositoryImpl : NetworkRepository {
                 return mapper.mapActorDtoActor(it)
             }
         }
-        throw RuntimeException("Exception in get actor retrofit")
+        throw RuntimeException("Exception in get actor retrofit ${response.message()}")
     }
 
     override suspend fun getMoviePoster(movieId: Int): MoviePoster {
@@ -106,7 +106,18 @@ class NetworkRepositoryImpl : NetworkRepository {
                 return mapper.mapMoviePosterDtoMoviePoster(it)
             }
         }
-        throw RuntimeException("Exception in get movie poster")
+        throw RuntimeException("Exception in get movie poster ${response.message()}")
+    }
+
+    override suspend fun getListMoviePosterByName(name: String): List<MoviePoster> {
+        val response = apiService.getListMoviePosterByName(name)
+
+        if (response.isSuccessful){
+            response.body()?.let {
+                return mapper.mapListMoviePosterDtoMoviePoster(it.docs)
+            }
+        }
+        throw RuntimeException("Exception in get movie poster ${response.message()}")
     }
 
 

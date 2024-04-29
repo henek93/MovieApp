@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.adapters.MovieViewPagerAdapter
+import com.example.movieapp.presentation.ui.movie.MovieFragment
 import kotlin.math.abs
 
 class MainFragment : Fragment() {
@@ -62,8 +64,11 @@ class MainFragment : Fragment() {
 
 
     private fun openMovieDescription(currentMovieId: Int) {
+        val args = bundleOf(
+            MovieFragment.MOVIE_ID_KEY to currentMovieId
+        )
         findNavController().navigate(
-            MainFragmentDirections.actionNavigationFragmentMainToNavigationFragmentMovie(currentMovieId)
+            R.id.action_mainFragment_to_nav_movie_and_actor, args
         )
     }
 

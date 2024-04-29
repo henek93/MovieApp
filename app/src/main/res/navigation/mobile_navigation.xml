@@ -5,47 +5,8 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_main">
 
-
-    <navigation android:id="@+id/navigation_main"
-        app:startDestination="@id/navigation_fragment_main">
-        <fragment
-            android:id="@+id/navigation_fragment_main"
-            android:name="com.example.movieapp.presentation.ui.main.MainFragment"
-            android:label="@string/title_main"
-            tools:layout="@layout/fragment_main" >
-            <action
-                android:id="@+id/action_navigation_fragment_main_to_navigation_fragment_movie"
-                app:destination="@id/navigation_fragment_movie" />
-        </fragment>
-        <fragment
-            android:id="@+id/navigation_fragment_actor"
-            android:name="com.example.movieapp.presentation.ui.actor.ActorFragment"
-            android:label="fragment_actor"
-            tools:layout="@layout/fragment_actor">
-            <argument
-                android:name="actorId"
-                app:argType="integer" />
-            <action
-                android:id="@+id/action_navigation_fragment_actor_to_navigation_fragment_movie"
-                app:destination="@id/navigation_fragment_movie" />
-        </fragment>
-        <fragment
-            android:id="@+id/navigation_fragment_movie"
-            android:name="com.example.movieapp.presentation.ui.movie.MovieFragment"
-            android:label="Фильм"
-            tools:layout="@layout/fragment_movie">
-            <argument
-                android:name="movieid"
-                app:argType="integer" />
-            <action
-                android:id="@+id/action_navigation_fragment_movie_to_navigation_fragment_actor"
-                app:destination="@id/navigation_fragment_actor" />
-            <action
-                android:id="@+id/action_navigation_fragment_movie_self"
-                app:destination="@id/navigation_fragment_movie" />
-        </fragment>
-    </navigation>
     <include app:graph="@navigation/navigation_favourite" />
     <include app:graph="@navigation/navigation_profile" />
     <include app:graph="@navigation/navigation_search" />
+    <include app:graph="@navigation/navigation_main" />
 </navigation>

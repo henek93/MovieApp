@@ -3,11 +3,51 @@ package com.example.movieapp.presentation.ui.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.movieapp.data.repositoryImpl.NetworkRepositoryImpl
+import com.example.movieapp.domain.enteties.MoviePoster
+import com.example.movieapp.domain.useCases.networkUseCases.GetListMoviePostersByNameUseCase
+import com.example.movieapp.domain.useCases.networkUseCases.GetTopListMoviesUseCase
+import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
+    private val repository = NetworkRepositoryImpl()
+    private val getListMoviePostersByNameUseCase = GetListMoviePostersByNameUseCase(repository)
+    private val getListTopListMoviesUseCase = GetTopListMoviesUseCase(repository)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is search Fragment"
+    private val _textDescription = MutableLiveData<String>()
+    val textDescription: LiveData<String>
+        get() = _textDescription
+
+    private val _listMovie = MutableLiveData<List<MoviePoster>>()
+    val listMovie: LiveData<List<MoviePoster>>
+        get() = _listMovie
+
+    fun loadData(){
+        viewModelScope.launch {
+            _listMovie.value = getListTopListMoviesUseCase.getTopListMovies(
+                limit = 30,
+                list = "top250",
+                page = 1
+            )
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun sendQuery(newText: String?) {
+        if (newText == null){
+            viewModelScope.launch {
+                _listMovie.value = getListTopListMoviesUseCase.getTopListMovies(
+                    list = "top250",
+                    limit = 30,
+                    page = 1)
+            }
+            _textDescription.value = "Возможно вас это заинтересует:"
+        }
+        else{
+            viewModelScope.launch {
+                _listMovie.value = getListMoviePostersByNameUseCase.getListMoviePosterByName(newText)
+            }
+            _textDescription.value = "Результаты по вашему запросу"
+        }
+    }
 }
