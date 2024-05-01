@@ -2,7 +2,7 @@ package com.example.movieapp.domain.useCases.databaseUseCases
 
 import com.example.movieapp.domain.dataBaseRepository.DatabaseRepository
 
-class DeleteMovieFromDb(
+class DeleteMovieFromDbUseCase(
     private val repository: DatabaseRepository
 ) {
 

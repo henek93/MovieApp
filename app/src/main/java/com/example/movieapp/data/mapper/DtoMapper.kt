@@ -1,5 +1,7 @@
 package com.example.movieapp.data.mapper
 
+import android.app.Application
+import com.example.movieapp.data.database.MovieDatabase
 import com.example.movieapp.data.network.pojo.ActorDto
 import com.example.movieapp.data.network.pojo.ActorPosterDto
 import com.example.movieapp.data.network.pojo.BackdropDto
@@ -29,14 +31,17 @@ import com.example.movieappkotlin.pojo.PosterDto
 import com.example.movieappkotlin.pojo.RatinggDto
 import com.example.movieappkotlin.pojo.TrailerDto
 
-class DtoMapper{
+class DtoMapper {
 
-    fun mapMovieDtoMovie(movieDto: MovieDto) = Movie(
+    suspend fun mapIsFavourite(movieId: Int) =
+        MovieDatabase.getInstance(Application()).movieDao().getMovieFromDb(movieId) != null
+
+    suspend fun mapMovieDtoMovie(movieDto: MovieDto) = Movie(
         id = movieDto.id,
         name = movieDto.name ?: Movie.UNKNOWN_NAME,
         description = movieDto.description ?: Movie.UNKNOWN_DESCRIPTION,
         poster = mapPosterDtoPoster(movieDto.poster),
-        isFavourite = false,
+        isFavourite = mapIsFavourite(movieDto.id),
         rating = mapRaitingDtoRaiting(movieDto.rating),
         pgRating = movieDto.pgRating ?: Movie.UNKNOWN_PG_RATING,
         type = movieDto.type ?: Movie.UNKNOWN_TYPE,
@@ -48,12 +53,12 @@ class DtoMapper{
         logo = mapLogoDtoLogo(movieDto.logo)
     )
 
-    fun mapMoviePosterDtoMoviePoster(moviePosterDto: MoviePosterDto) = MoviePoster(
+    suspend fun mapMoviePosterDtoMoviePoster(moviePosterDto: MoviePosterDto) = MoviePoster(
         id = moviePosterDto.id,
         name = moviePosterDto.name ?: Movie.UNKNOWN_NAME,
         poster = mapPosterDtoPoster(moviePosterDto.poster),
         rating = mapRaitingDtoRaiting(moviePosterDto.rating),
-        isFavourite = false,
+        isFavourite = mapIsFavourite(moviePosterDto.id),
         pgRating = moviePosterDto.pgRating ?: Movie.UNKNOWN_PG_RATING,
         backdrop = mapBackdropDtoBackDrop(moviePosterDto.backdrop),
         logo = mapLogoDtoLogo(moviePosterDto.logo),
@@ -70,7 +75,7 @@ class DtoMapper{
         mapActorPosterDtoActorPoster(it)
     }
 
-    fun mapListMoviePosterDtoMoviePoster(list: List<MoviePosterDto>) = list.map {
+    suspend fun mapListMoviePosterDtoMoviePoster(list: List<MoviePosterDto>) = list.map {
         mapMoviePosterDtoMoviePoster(it)
     }
 
@@ -138,12 +143,12 @@ class DtoMapper{
         rating = ratingDto?.ratingKinoPoisk ?: Rating.UNKNOWN_RATING
     )
 
-    fun mapListMovieDtoMovie(listMovieDto: List<MovieDto>) = listMovieDto.map {
+    suspend fun mapListMovieDtoMovie(listMovieDto: List<MovieDto>) = listMovieDto.map {
         mapMovieDtoMovie(it)
     }
 
-    fun mapListSimilarMovieDtoSimilarMovie(listSimilarMovieDto: List<SimilarMovieDto>) : List<SimilarMovie> {
-        return if (listSimilarMovieDto.isNotEmpty()){
+    fun mapListSimilarMovieDtoSimilarMovie(listSimilarMovieDto: List<SimilarMovieDto>): List<SimilarMovie> {
+        return if (listSimilarMovieDto.isNotEmpty()) {
             listSimilarMovieDto.map {
                 mapSimilarMovieDtoSimilarMovie(it)
             }
@@ -162,7 +167,7 @@ class DtoMapper{
         mapGenreDtoGenre(it)
     }
 
-    private fun mapGenreDtoGenre(genreDto: GenreDto) = Genre(
+    fun mapGenreDtoGenre(genreDto: GenreDto) = Genre(
         name = genreDto.name ?: Genre.UNKNOWN_NAME
     )
 }

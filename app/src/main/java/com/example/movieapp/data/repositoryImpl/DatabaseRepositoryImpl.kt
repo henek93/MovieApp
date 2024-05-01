@@ -18,8 +18,12 @@ class DatabaseRepositoryImpl : DatabaseRepository {
         }
     }
 
-    override suspend fun getMovie(movieId: Int) =
-        mapper.mapDbMovieToMovie(movieDao.getMovieFromDb(movieId))
+    override suspend fun getMovie(movieId: Int): Movie{
+        movieDao.getMovieFromDb(movieId)?.let {
+            mapper.mapDbMovieToMovie(it)
+        }
+        throw RuntimeException("Exception in mapper Movie == null")
+    }
 
     override suspend fun deleteMovieFromDb(movieId: Int) {
         movieDao.deleteMovieFromDb(movieId)

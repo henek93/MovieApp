@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <SearchView
-            android:id="@+id/search_view"
+            android:id="@+id/search_view_favourite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:queryHint="Поиск по избранному"
@@ -33,7 +33,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_recycler_view"
+        android:id="@+id/favourite_rw"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -54,6 +54,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title"
         tools:listitem="@layout/view_holder_favourite_poster"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
