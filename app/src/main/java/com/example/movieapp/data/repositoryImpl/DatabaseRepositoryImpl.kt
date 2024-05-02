@@ -7,9 +7,11 @@ import com.example.movieapp.data.mapper.DbMapper
 import com.example.movieapp.domain.dataBaseRepository.DatabaseRepository
 import com.example.movieapp.domain.enteties.Movie
 
-class DatabaseRepositoryImpl : DatabaseRepository {
+class DatabaseRepositoryImpl(
+    private val  application: Application
+) : DatabaseRepository {
 
-    private val movieDao = MovieDatabase.getInstance(Application()).movieDao()
+    private val movieDao = MovieDatabase.getInstance(application).movieDao()
     private val mapper = DbMapper()
 
     override fun getListFavouriteMovie() = MediatorLiveData<List<Movie>>().apply {

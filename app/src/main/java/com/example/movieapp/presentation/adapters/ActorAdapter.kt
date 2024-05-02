@@ -16,6 +16,7 @@ class ActorAdapter : ListAdapter<ActorPoster, ActorViewHolder>(ActorDiffCallBack
 
     var onActorClickListener: ((Int) -> Unit)? = null
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         return ActorViewHolder(
             ViewHolderActorBinding.inflate(

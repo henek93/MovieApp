@@ -1,23 +1,34 @@
 package com.example.movieapp.presentation.ui.main
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapp.data.repositoryImpl.DatabaseRepositoryImpl
 import com.example.movieapp.data.repositoryImpl.NetworkRepositoryImpl
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.MoviePoster
+import com.example.movieapp.domain.useCases.databaseUseCases.AddMovieToDbUseCase
+import com.example.movieapp.domain.useCases.databaseUseCases.DeleteMovieFromDbUseCase
 import com.example.movieapp.domain.useCases.networkUseCases.GetListMoviesWithGenreUseCase
 import com.example.movieapp.domain.useCases.networkUseCases.GetListNewMoviesUseCase
+import com.example.movieapp.domain.useCases.networkUseCases.GetMovieUseCase
 import com.example.movieapp.domain.useCases.networkUseCases.GetTopListMoviesUseCase
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = NetworkRepositoryImpl()
-    private val getTopListMoviesUseCase = GetTopListMoviesUseCase(repository)
-    private val getNewListMoviesUseCase = GetListNewMoviesUseCase(repository)
-    private val getListMoviesWithGenreUseCase = GetListMoviesWithGenreUseCase(repository)
+    private val networkRepository = NetworkRepositoryImpl()
+    private val getTopListMoviesUseCase = GetTopListMoviesUseCase(networkRepository)
+    private val getNewListMoviesUseCase = GetListNewMoviesUseCase(networkRepository)
+    private val getListMoviesWithGenreUseCase = GetListMoviesWithGenreUseCase(networkRepository)
+    private val getMovieUseCase = GetMovieUseCase(networkRepository)
+
+    private val dbRepository = DatabaseRepositoryImpl(application)
+    private val addMovieToDbUseCase = AddMovieToDbUseCase(dbRepository)
+    private val deleteMovieFromDbUseCase = DeleteMovieFromDbUseCase(dbRepository)
 
     private val _pagerMovieList = MutableLiveData<List<MoviePoster>>()
     val pagerMovieList: LiveData<List<MoviePoster>>
@@ -73,6 +84,20 @@ class MainViewModel : ViewModel() {
                 page,
                 limit
             )
+        }
+    }
+
+    fun makeLike(moviePoster: MoviePoster){
+        viewModelScope.launch {
+            addMovieToDbUseCase.addMovieToDbUseCase(
+                getMovieUseCase.getMovie(moviePoster.id)
+            )
+        }
+    }
+
+    fun deleteLike(movieId: Int){
+        viewModelScope.launch{
+            deleteMovieFromDbUseCase.deleteMovieFromDb(movieId)
         }
     }
 }

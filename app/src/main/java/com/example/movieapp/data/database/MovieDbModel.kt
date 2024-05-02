@@ -10,6 +10,7 @@ import com.example.movieapp.domain.enteties.Logo
 import com.example.movieapp.domain.enteties.Poster
 import com.example.movieapp.domain.enteties.Rating
 import com.example.movieapp.domain.enteties.SimilarMovie
+import java.io.Serializable
 
 @Entity(tableName = "favouriteMovies")
 data class MovieDbModel(
@@ -28,4 +29,4 @@ data class MovieDbModel(
     val similarMovies: List<SimilarMovie>,
     val backdrop: Backdrop,
     val logo: Logo
-)
+): Serializable

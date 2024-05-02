@@ -81,11 +81,12 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:2.6.2")
 
     //Room
-    val room_version = "2.5.0"
+    val room_version = "2.6.1"
 
     implementation("androidx.room:room-runtime:$room_version")
-    // To use Kotlin annotation processing tool (kapt)
+    annotationProcessor("androidx.room:room-compiler:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
     implementation("androidx.room:room-rxjava3:$room_version")
 
     //Picasso

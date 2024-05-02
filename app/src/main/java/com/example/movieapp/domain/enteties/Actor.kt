@@ -1,5 +1,6 @@
 package com.example.movieapp.domain.enteties
 
+import java.io.Serializable
 import java.util.Date
 
 data class Actor(
@@ -9,7 +10,7 @@ data class Actor(
     val listProfession: List<Profession>,
     val dateOfBirth: String,
     val listMovies: List<MovieActor>
-){
+): Serializable{
 
     companion object{
 
