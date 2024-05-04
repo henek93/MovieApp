@@ -64,7 +64,7 @@ class MainFragment : Fragment() {
     }
 
     private fun setLIkeClickListener(){
-        adapterRw2.onLikeClickListener = {
+        adapterRw1.onLikeClickListener = {
             if (it.isFavourite){
                 viewModel.deleteLike(it.id)
             }

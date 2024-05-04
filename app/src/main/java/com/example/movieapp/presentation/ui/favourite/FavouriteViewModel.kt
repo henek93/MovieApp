@@ -2,7 +2,6 @@ package com.example.movieapp.presentation.ui.favourite
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.data.repositoryImpl.DatabaseRepositoryImpl
 import com.example.movieapp.domain.useCases.databaseUseCases.DeleteMovieFromDbUseCase
@@ -17,7 +16,8 @@ class FavouriteViewModel(application: Application): AndroidViewModel(application
     private val getMovieFromDbUseCase = GetMovieFromDbUseCase(repository)
     private val deleteMovieFromDbUseCase = DeleteMovieFromDbUseCase(repository)
 
-    val favouriteMovies = getListFavouriteMovieUseCase.getListFavouriteMovie()
+    val favouriteMovies =
+        getListFavouriteMovieUseCase.getListFavouriteMovie()
 
     fun deleteMovieFromDb(movieId: Int){
         viewModelScope.launch {

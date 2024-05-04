@@ -8,7 +8,7 @@ import com.example.movieapp.domain.dataBaseRepository.DatabaseRepository
 import com.example.movieapp.domain.enteties.Movie
 
 class DatabaseRepositoryImpl(
-    private val  application: Application
+    private val application: Application
 ) : DatabaseRepository {
 
     private val movieDao = MovieDatabase.getInstance(application).movieDao()
@@ -32,7 +32,8 @@ class DatabaseRepositoryImpl(
     }
 
     override suspend fun addMovieToDb(movie: Movie) {
-        movieDao.addMovieToDb(mapper.mapMovieToDbMovie(movie))
+        movieDao.addMovieToDb(
+            mapper.mapMovieToDbMovie(movie))
     }
 
 

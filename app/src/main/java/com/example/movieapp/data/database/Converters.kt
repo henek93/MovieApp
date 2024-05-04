@@ -60,8 +60,8 @@ class Converters {
             .map {
                 ActorPoster(
                     it.split("&")[0].toInt(),
-                    it.split("&")[2],
-                    it.split("&")[3]
+                    it.split("&")[1],
+                    it.split("&")[2]
                 )
             }
 
@@ -77,10 +77,10 @@ class Converters {
         fun inListSimilarMovie(value: String) = value.split(",")
             .map {
                 SimilarMovie(
-                    it.split("&")[1].toInt(),
-                    it.split("&")[2],
-                    Poster(it.split("&")[3]),
-                    Rating(it.split("&")[4].toDouble())
+                    it.split("&")[0].toInt(),
+                    it.split("&")[1],
+                    Poster(it.split("&")[2]),
+                    Rating(it.split("&")[3].toDouble())
                 )
             }
 
@@ -94,7 +94,7 @@ class Converters {
         fun inBackdrop(value: String): Backdrop {
             val list = value.split(",")
 
-            return Backdrop(list[1], list[2])
+            return Backdrop(list[0], list[1])
         }
 
         @TypeConverter

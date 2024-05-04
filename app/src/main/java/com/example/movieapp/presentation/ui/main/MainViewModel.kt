@@ -4,11 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.data.repositoryImpl.DatabaseRepositoryImpl
 import com.example.movieapp.data.repositoryImpl.NetworkRepositoryImpl
-import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.domain.useCases.databaseUseCases.AddMovieToDbUseCase
 import com.example.movieapp.domain.useCases.databaseUseCases.DeleteMovieFromDbUseCase
@@ -89,8 +87,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun makeLike(moviePoster: MoviePoster){
         viewModelScope.launch {
-            addMovieToDbUseCase.addMovieToDbUseCase(
-                getMovieUseCase.getMovie(moviePoster.id)
+            val movie = getMovieUseCase.getMovie(moviePoster.id)
+            addMovieToDbUseCase.addMovieToDb(
+                movie
             )
         }
     }

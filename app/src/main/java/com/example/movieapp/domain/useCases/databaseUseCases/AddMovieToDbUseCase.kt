@@ -7,6 +7,6 @@ class AddMovieToDbUseCase(
     private val repository: DatabaseRepository
 ) {
 
-    suspend fun addMovieToDbUseCase(movie: Movie) = repository.addMovieToDb(movie)
+    suspend fun addMovieToDb(movie: Movie) = repository.addMovieToDb(movie)
 
 }
