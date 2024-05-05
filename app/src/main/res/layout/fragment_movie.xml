@@ -86,7 +86,6 @@
                 android:id="@+id/image_like"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
-                android:src="@drawable/ic_favorite"
                 android:layout_weight="1"/>
 
         </LinearLayout>

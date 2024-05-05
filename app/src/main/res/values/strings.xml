@@ -27,4 +27,6 @@
     <string name="same_movies">Похожие фильмы</string>
     <string name="best_films">Лучшие фильмы</string>
     <string name="may_be_it_interested">Возможно тебя заинтересует:</string>
+    <string name="favourite">Избранное:</string>
+    <string name="poster">poster</string>
 </resources>

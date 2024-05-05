@@ -11,9 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMovieBinding
+import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.presentation.adapters.ActorAdapter
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.ui.actor.ActorFragment
+import com.example.movieapp.presentation.viewHolders.MoviePosterViewHolder
 import com.squareup.picasso.Picasso
 
 
@@ -77,6 +79,19 @@ class MovieFragment : Fragment() {
         setOnMoviePosterClickListener()
     }
 
+    private fun setOnLikeClickListener(movie: Movie) {
+        binding.imageLike.setOnClickListener {
+            if (movie.isFavourite){
+                viewModel.deleteLike(movie.id)
+                binding.imageLike.setImageResource(R.drawable.ic_favorite)
+            }
+            else {
+                viewModel.makeLike(movie)
+                binding.imageLike.setImageResource(R.drawable.ic_favorite_true)
+            }
+        }
+    }
+
     private fun setRecyclerViews() {
         with(binding.rwActors){
             adapter = actorAdapter
@@ -132,6 +147,13 @@ class MovieFragment : Fragment() {
                 actorAdapter.submitList(it.actors)
 
                 viewModel.getListSimilarMovie()
+
+                if (it.isFavourite){
+                    imageLike.setImageResource(R.drawable.ic_favorite_true)
+                }else
+                    imageLike.setImageResource(R.drawable.ic_favorite)
+
+                setOnLikeClickListener(it)
             }
         }
 

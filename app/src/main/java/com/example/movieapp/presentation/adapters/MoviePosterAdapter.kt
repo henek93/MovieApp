@@ -1,11 +1,7 @@
 package com.example.movieapp.presentation.adapters
 
-import android.content.Context
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.example.movieapp.R
@@ -13,11 +9,11 @@ import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.presentation.adapters.callBacks.MoviePosterDiffCallback
 import com.example.movieapp.presentation.viewHolders.MoviePosterViewHolder
-import com.squareup.picasso.Picasso
 
 class MoviePosterAdapter : ListAdapter<MoviePoster, MoviePosterViewHolder>(MoviePosterDiffCallback()) {
 
     var onPosterClickListener: ((Int) -> Unit)? = null
+    var onLikeClickListener: ((MoviePoster) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviePosterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie, parent, false)
@@ -56,9 +52,24 @@ class MoviePosterAdapter : ListAdapter<MoviePoster, MoviePosterViewHolder>(Movie
             filmNameText.text = movie.name
         }
 
+        setLikeImage(holder, movie.isFavourite)
+
         holder.view.setOnClickListener {
             onPosterClickListener?.invoke(movie.id)
         }
+
+        holder.likeImage.setOnClickListener {
+            onLikeClickListener?.invoke(movie)
+            setLikeImage(holder, !movie.isFavourite)
+        }
+    }
+
+    private fun setLikeImage(holder: MoviePosterViewHolder, isFavourite: Boolean){
+        if (isFavourite){
+            holder.likeImage.setImageResource(R.drawable.ic_favorite_true)
+        }
+        else
+            holder.likeImage.setImageResource(R.drawable.ic_favorite)
     }
 
 

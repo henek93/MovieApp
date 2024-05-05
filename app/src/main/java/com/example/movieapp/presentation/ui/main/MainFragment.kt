@@ -44,6 +44,7 @@ class MainFragment : Fragment() {
         observeViewModel()
         setPagerTransformer()
         setOnPosterClickListener()
+        setLIkeClickListener()
 
         return binding.root
     }
@@ -59,6 +60,30 @@ class MainFragment : Fragment() {
 
         adapterRw3.onPosterClickListener = {
             openMovieDescription(it)
+        }
+    }
+
+    private fun setLIkeClickListener(){
+        adapterRw1.onLikeClickListener = {
+            if (it.isFavourite){
+                viewModel.deleteLike(it.id)
+            }
+            else
+                viewModel.makeLike(it)
+        }
+        adapterRw2.onLikeClickListener = {
+            if (it.isFavourite){
+                viewModel.deleteLike(it.id)
+            }
+            else
+                viewModel.makeLike(it)
+        }
+        adapterRw3.onLikeClickListener = {
+            if (it.isFavourite){
+                viewModel.deleteLike(it.id)
+            }
+            else
+                viewModel.makeLike(it)
         }
     }
 

@@ -1,9 +1,11 @@
 package com.example.movieapp.domain.enteties
 
+import java.io.Serializable
+
 data class Backdrop(
     val url: String = "https://wcinema.ru/upload/000/u18/4/d/079ae886.jpg",
     val previewUrl: String = "https://wcinema.ru/upload/000/u18/4/d/079ae886.jpg"
-){
+): Serializable {
 
     companion object{
 

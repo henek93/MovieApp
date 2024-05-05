@@ -14,4 +14,5 @@ class MoviePosterViewHolder(
     val pgText = view.findViewById<TextView>(R.id.pg_text)
     val filmNameText = view.findViewById<TextView>(R.id.film_name_text)
     val poster = view.findViewById<ImageView>(R.id.movie_image)
+    val likeImage = view.findViewById<ImageView>(R.id.movie_like_image)
 }

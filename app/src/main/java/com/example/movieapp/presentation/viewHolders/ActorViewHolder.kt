@@ -8,7 +8,7 @@ import com.example.movieapp.domain.enteties.Actor
 import com.example.movieapp.domain.enteties.ActorPoster
 
 class ActorViewHolder(
-    private val binding: ViewHolderActorBinding
+    val binding: ViewHolderActorBinding
 ): RecyclerView.ViewHolder(binding.root){
 
     fun bind(actor: ActorPoster){

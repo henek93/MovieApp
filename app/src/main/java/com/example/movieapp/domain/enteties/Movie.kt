@@ -1,5 +1,7 @@
 package com.example.movieapp.domain.enteties
 
+import java.io.Serializable
+
 data class Movie(
     val id: Int,
     val name: String,
@@ -15,7 +17,7 @@ data class Movie(
     val similarMovies: List<SimilarMovie>,
     val backdrop: Backdrop,
     val logo: Logo
-){
+): Serializable {
 
     companion object{
 
