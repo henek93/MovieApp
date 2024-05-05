@@ -9,14 +9,16 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.movieapp.MovieApplication
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMovieBinding
 import com.example.movieapp.domain.enteties.Movie
+import com.example.movieapp.presentation.MovieViewModelFactory
 import com.example.movieapp.presentation.adapters.ActorAdapter
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.ui.actor.ActorFragment
-import com.example.movieapp.presentation.viewHolders.MoviePosterViewHolder
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 
 class MovieFragment : Fragment() {
@@ -25,8 +27,10 @@ class MovieFragment : Fragment() {
     private val binding
         get() = _binding ?: throw RuntimeException("Binding == null")
 
+    @Inject
+    lateinit var movieViewModelFactory: MovieViewModelFactory
     private val viewModel by lazy {
-        ViewModelProvider(this)[MovieViewModel::class.java]
+        ViewModelProvider(this, movieViewModelFactory)[MovieViewModel::class.java]
     }
 
     private val actorAdapter by lazy {
@@ -39,6 +43,10 @@ class MovieFragment : Fragment() {
 
     private var movieId: Int? = null
 
+    private val component by lazy {
+        (requireActivity().application as MovieApplication).component
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,6 +57,7 @@ class MovieFragment : Fragment() {
     }
 
     override fun onAttach(context: Context) {
+        component.inject(this)
         super.onAttach(context)
 
         parseArgs()

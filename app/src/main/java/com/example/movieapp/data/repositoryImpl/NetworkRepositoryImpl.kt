@@ -3,17 +3,21 @@ package com.example.movieapp.data.repositoryImpl
 import android.util.Log
 import com.example.movieapp.data.mapper.DtoMapper
 import com.example.movieapp.data.network.api.ApiFactory
+import com.example.movieapp.data.network.api.ApiService
 import com.example.movieapp.domain.enteties.Actor
 import com.example.movieapp.domain.enteties.ActorPoster
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.domain.enteties.Trailer
 import com.example.movieapp.domain.networkRepository.NetworkRepository
+import javax.inject.Inject
 
-class NetworkRepositoryImpl : NetworkRepository {
+class NetworkRepositoryImpl @Inject constructor(
+    private val apiService: ApiService,
+    private val mapper: DtoMapper
+): NetworkRepository {
 
-    private val apiService = ApiFactory.apiService
-    private val mapper = DtoMapper()
+
 
     override suspend fun getMovie(movieId: Int): Movie {
         val response = apiService.getMovie(movieId)

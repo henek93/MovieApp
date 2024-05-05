@@ -1,5 +1,6 @@
 package com.example.movieapp.presentation.ui.search
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.movieapp.MovieApplication
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentSearchBinding
+import com.example.movieapp.presentation.MovieViewModelFactory
 import com.example.movieapp.presentation.adapters.GridSpacingItemDecoration
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.ui.movie.MovieFragment
+import javax.inject.Inject
 
 
 class SearchFragment : Fragment() {
@@ -23,12 +27,22 @@ class SearchFragment : Fragment() {
     private val binding
         get() = _binding ?: throw RuntimeException("Binding == null")
 
-
+    @Inject
+    lateinit var movieViewModelFactory: MovieViewModelFactory
     private val viewModel by lazy {
-        ViewModelProvider(this)[SearchViewModel::class.java]
+        ViewModelProvider(this, movieViewModelFactory)[SearchViewModel::class.java]
     }
     private val adapterMoviePoster by lazy {
         MoviePosterAdapter()
+    }
+
+    private val component by lazy {
+        (requireActivity().application as MovieApplication).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateView(

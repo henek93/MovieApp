@@ -1,5 +1,6 @@
 package com.example.movieapp.presentation.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.example.movieapp.MovieApplication
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
+import com.example.movieapp.presentation.MovieViewModelFactory
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.adapters.MovieViewPagerAdapter
 import com.example.movieapp.presentation.ui.movie.MovieFragment
+import javax.inject.Inject
 import kotlin.math.abs
 
 class MainFragment : Fragment() {
@@ -22,14 +26,26 @@ class MainFragment : Fragment() {
     private val binding
         get() = _binding ?: throw RuntimeException("Binding == null")
 
+    @Inject
+    lateinit var movieViewModelFactory: MovieViewModelFactory
     private val viewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
+        ViewModelProvider(this, movieViewModelFactory)[MainViewModel::class.java]
     }
 
     private lateinit var adapterPager: MovieViewPagerAdapter
     private lateinit var adapterRw1: MoviePosterAdapter
     private lateinit var adapterRw2: MoviePosterAdapter
     private lateinit var adapterRw3: MoviePosterAdapter
+
+
+    private val component by lazy {
+        (requireActivity().application as MovieApplication).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
 
 
     override fun onCreateView(

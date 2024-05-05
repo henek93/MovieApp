@@ -1,5 +1,7 @@
 package com.example.movieapp.presentation.ui.favourite
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +10,13 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.movieapp.MovieApplication
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentFavouriteBinding
+import com.example.movieapp.presentation.MovieViewModelFactory
 import com.example.movieapp.presentation.adapters.MovieFavouritePosterAdapter
 import com.example.movieapp.presentation.ui.movie.MovieFragment
+import javax.inject.Inject
 
 
 class FavouriteFragment : Fragment() {
@@ -20,12 +25,23 @@ class FavouriteFragment : Fragment() {
     private val binding
         get() = _binding ?: throw RuntimeException("Binding == null")
 
+    @Inject
+    lateinit var movieViewModelFactory: MovieViewModelFactory
+    private val viewModel by lazy {
+        ViewModelProvider(this, movieViewModelFactory)[FavouriteViewModel::class.java]
+    }
+
     private val movieAdapter by lazy {
         MovieFavouritePosterAdapter()
     }
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[FavouriteViewModel::class.java]
+    private val component by lazy {
+        (requireActivity().application as MovieApplication).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateView(
@@ -52,8 +68,6 @@ class FavouriteFragment : Fragment() {
             movieAdapter.submitList(it)
         }
     }
-
-
 
     private fun setUpRecyclerView() {
         with(binding.favouriteRw){

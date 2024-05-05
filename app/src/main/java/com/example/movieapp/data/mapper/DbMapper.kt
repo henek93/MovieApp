@@ -2,8 +2,9 @@ package com.example.movieapp.data.mapper
 
 import com.example.movieapp.data.database.MovieDbModel
 import com.example.movieapp.domain.enteties.Movie
+import javax.inject.Inject
 
-class DbMapper {
+class DbMapper @Inject constructor() {
 
     fun mapDbMovieToMovieForGetMovie(movieDbModel: MovieDbModel?): Movie? {
         movieDbModel?.let {

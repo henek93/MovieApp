@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieapp.data.repositoryImpl.NetworkRepositoryImpl
 import com.example.movieapp.domain.enteties.MoviePoster
 import com.example.movieapp.domain.useCases.networkUseCases.GetListMoviePostersByNameUseCase
 import com.example.movieapp.domain.useCases.networkUseCases.GetTopListMoviesUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel : ViewModel() {
-    private val repository = NetworkRepositoryImpl()
-    private val getListMoviePostersByNameUseCase = GetListMoviePostersByNameUseCase(repository)
-    private val getListTopListMoviesUseCase = GetTopListMoviesUseCase(repository)
+class SearchViewModel @Inject constructor(
+    private val getListMoviePostersByNameUseCase: GetListMoviePostersByNameUseCase,
+    private val getListTopListMoviesUseCase: GetTopListMoviesUseCase
+) : ViewModel() {
 
     private val _textDescription = MutableLiveData<String>()
     val textDescription: LiveData<String>
@@ -23,7 +23,7 @@ class SearchViewModel : ViewModel() {
     val listMovie: LiveData<List<MoviePoster>>
         get() = _listMovie
 
-    fun loadData(){
+    fun loadData() {
         viewModelScope.launch {
             _listMovie.value = getListTopListMoviesUseCase.getTopListMovies(
                 limit = 30,
@@ -34,18 +34,19 @@ class SearchViewModel : ViewModel() {
     }
 
     fun sendQuery(newText: String?) {
-        if (newText == null){
+        if (newText == null) {
             viewModelScope.launch {
                 _listMovie.value = getListTopListMoviesUseCase.getTopListMovies(
                     list = "top250",
                     limit = 30,
-                    page = 1)
+                    page = 1
+                )
             }
             _textDescription.value = "Возможно вас это заинтересует:"
-        }
-        else{
+        } else {
             viewModelScope.launch {
-                _listMovie.value = getListMoviePostersByNameUseCase.getListMoviePosterByName(newText)
+                _listMovie.value =
+                    getListMoviePostersByNameUseCase.getListMoviePosterByName(newText)
             }
             _textDescription.value = "Результаты по вашему запросу"
         }
