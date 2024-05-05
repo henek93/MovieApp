@@ -30,8 +30,9 @@ import com.example.movieappkotlin.pojo.MovieDto
 import com.example.movieappkotlin.pojo.PosterDto
 import com.example.movieappkotlin.pojo.RatinggDto
 import com.example.movieappkotlin.pojo.TrailerDto
+import javax.inject.Inject
 
-class DtoMapper {
+class DtoMapper @Inject constructor() {
 
     suspend fun mapIsFavourite(movieId: Int) =
         MovieDatabase.getInstance(Application()).movieDao().getMovieFromDb(movieId) != null

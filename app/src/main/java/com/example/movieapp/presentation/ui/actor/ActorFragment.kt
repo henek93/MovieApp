@@ -10,32 +10,35 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.movieapp.MovieApplication
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentActorBinding
 import com.example.movieapp.domain.enteties.Actor
+import com.example.movieapp.presentation.MovieViewModelFactory
 import com.example.movieapp.presentation.adapters.MoviePosterAdapter
 import com.example.movieapp.presentation.ui.movie.MovieFragment
+import javax.inject.Inject
 
 
 class ActorFragment : Fragment() {
 
     private var _binding: FragmentActorBinding? = null
-
     private val binding: FragmentActorBinding
         get() = _binding ?: throw RuntimeException("Binding == null")
 
-
+    @Inject
+    lateinit var movieViewModelFactory: MovieViewModelFactory
     private val viewModel by lazy {
-        ViewModelProvider(this)[ActorViewModel::class.java]
+        ViewModelProvider(this, movieViewModelFactory)[ActorViewModel::class.java]
+    }
+
+    private val component by lazy {
+        (requireActivity().application as MovieApplication).component
     }
 
     private lateinit var adapterMovie: MoviePosterAdapter
 
     private var actorId: Int? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +50,7 @@ class ActorFragment : Fragment() {
     }
 
     override fun onAttach(context: Context) {
+        component.inject(this)
         super.onAttach(context)
 
         parseArgs()

@@ -1,8 +1,9 @@
 package com.example.movieapp.domain.useCases.networkUseCases
 
 import com.example.movieapp.domain.networkRepository.NetworkRepository
+import javax.inject.Inject
 
-class GetActorUseCase(
+class GetActorUseCase @Inject constructor(
     private val repository: NetworkRepository
 ){
 
