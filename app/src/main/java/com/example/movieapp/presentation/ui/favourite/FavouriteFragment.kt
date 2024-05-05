@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentFavouriteBinding
 import com.example.movieapp.presentation.adapters.MovieFavouritePosterAdapter
+import com.example.movieapp.presentation.ui.movie.MovieFragment
 
 
 class FavouriteFragment : Fragment() {
@@ -39,7 +43,7 @@ class FavouriteFragment : Fragment() {
 
     private fun setOnPosterClickListener() {
         movieAdapter.onMoviePosterClickListener = {
-            TODO("navigate to movie fragment")
+            openMovieDescription(it)
         }
     }
 
@@ -49,9 +53,25 @@ class FavouriteFragment : Fragment() {
         }
     }
 
+
+
     private fun setUpRecyclerView() {
         with(binding.favouriteRw){
             adapter = movieAdapter
         }
+    }
+
+    private fun openMovieDescription(currentMovieId: Int) {
+        val args = bundleOf(
+            MovieFragment.MOVIE_ID_KEY to currentMovieId
+        )
+        findNavController().navigate(
+            R.id.action_favouriteFragment_to_nav_movie_and_actor, args
+        )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

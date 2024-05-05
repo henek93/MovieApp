@@ -1,21 +1,29 @@
 package com.example.movieapp.presentation.ui.movie
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapp.data.repositoryImpl.DatabaseRepositoryImpl
 import com.example.movieapp.data.repositoryImpl.NetworkRepositoryImpl
 import com.example.movieapp.domain.enteties.Movie
 import com.example.movieapp.domain.enteties.MoviePoster
+import com.example.movieapp.domain.useCases.databaseUseCases.AddMovieToDbUseCase
+import com.example.movieapp.domain.useCases.databaseUseCases.DeleteMovieFromDbUseCase
 import com.example.movieapp.domain.useCases.networkUseCases.GetMoviePosterUseCase
 import com.example.movieapp.domain.useCases.networkUseCases.GetMovieUseCase
 import kotlinx.coroutines.launch
 
-class MovieViewModel : ViewModel() {
+class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = NetworkRepositoryImpl()
     private val getMovieUseCase = GetMovieUseCase(repository)
     private val getMoviePosterUseCase = GetMoviePosterUseCase(repository)
+
+    private val dbRepository = DatabaseRepositoryImpl(application)
+    private val addMovieToDbUseCase = AddMovieToDbUseCase(dbRepository)
+    private val deleteMovieFromDbUseCase = DeleteMovieFromDbUseCase(dbRepository)
 
     private val _currentMovie = MutableLiveData<Movie>()
     val currentMovie: LiveData<Movie>
@@ -27,7 +35,13 @@ class MovieViewModel : ViewModel() {
 
     fun getCurrentMovie(idMovie: Int) {
         viewModelScope.launch {
-            _currentMovie.value = getMovieUseCase.getMovie(idMovie)
+            try {
+                _currentMovie.value = dbRepository.getMovie(idMovie)
+            }
+            catch (e: Exception){
+                _currentMovie.value = getMovieUseCase.getMovie(idMovie)
+            }
+
         }
     }
 
@@ -50,6 +64,18 @@ class MovieViewModel : ViewModel() {
                 }
             }
 
+        }
+    }
+
+    fun makeLike(movie: Movie){
+        viewModelScope.launch {
+            addMovieToDbUseCase.addMovieToDb(movie)
+        }
+    }
+
+    fun deleteLike(movieId: Int){
+        viewModelScope.launch{
+            deleteMovieFromDbUseCase.deleteMovieFromDb(movieId)
         }
     }
 }

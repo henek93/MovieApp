@@ -71,6 +71,20 @@ class MainFragment : Fragment() {
             else
                 viewModel.makeLike(it)
         }
+        adapterRw2.onLikeClickListener = {
+            if (it.isFavourite){
+                viewModel.deleteLike(it.id)
+            }
+            else
+                viewModel.makeLike(it)
+        }
+        adapterRw3.onLikeClickListener = {
+            if (it.isFavourite){
+                viewModel.deleteLike(it.id)
+            }
+            else
+                viewModel.makeLike(it)
+        }
     }
 
 

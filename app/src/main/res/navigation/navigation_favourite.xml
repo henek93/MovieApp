@@ -9,5 +9,10 @@
         android:id="@+id/favouriteFragment"
         android:name="com.example.movieapp.presentation.ui.favourite.FavouriteFragment"
         android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_nav_movie_and_actor"
+            app:destination="@id/nav_movie_and_actor" />
+    </fragment>
+    <include app:graph="@navigation/navigation_movie_and_actor" />
 </navigation>
