@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_color"
+    tools:context=".presentation.ui.login.LoginFragment">
+
+    <TextView
+        android:id="@+id/tw_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:text="Вход в аккаунт"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_email"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="12dp"
+        app:errorEnabled="true"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:endIconMode="clear_text"
+        android:hint="@string/email"
+        app:errorTextColor="@color/pink_light"
+        app:hintTextColor="@color/color_white"
+        app:boxStrokeColor="@color/pink_light"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusTopStart="15dp"
+        android:layout_marginEnd="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_email"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/color_white"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:backgroundTint="@color/pink_dark"
+        android:text="@string/next"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>

@@ -8,6 +8,8 @@
     <dimen name="spacing_6x">24dp</dimen>
     <dimen name="spacing_13x">52dp</dimen>
 
+    <dimen name="headerTextSize">25sp</dimen>
+
 
     <!--Размер текста и картинок-->
     <dimen name="text_all">15sp</dimen>
