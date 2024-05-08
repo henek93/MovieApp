@@ -1,23 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.ui.profile.ProfileFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.profile.ProfileFragment">
+    android:background="@color/background_color">
 
-    <TextView
-        android:id="@+id/text_notifications"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:text="@string/title_profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_white"
+            android:textSize="30sp"
+            android:layout_marginBottom="15dp"
+            android:text="Профиль и настройки" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileCircleImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_profile_white"
+                app:civ_border_color="@color/imageBorderColor"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/usernameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/profileCircleImageView"
+                android:text="Войти в аккаунт"
+                android:textColor="@color/color_white"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textColor="@color/gray_light"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="10dp"
+                android:textSize="17sp"
+                android:layout_below="@id/usernameTextView"
+                android:layout_toRightOf="@id/profileCircleImageView"/>
+
+            <ImageView
+                style="@style/viewParent"
+                android:src="@drawable/ic_more"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/mode_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Color1SwitchStyle"
+            android:gravity="center|left"
+            android:layout_marginTop="18dp"
+            android:drawablePadding="20dp"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:drawableStart="@drawable/ic_dark_mode"
+            android:text="@string/dark_mode" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="18dp"
+            android:textSize="19sp"
+            android:textColor="@color/gray_dark"
+            android:text="@string/profile"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/color_white"
+            android:gravity="center|start"
+            android:textSize="19sp"
+            android:drawablePadding="25dp"
+            android:text="Редактировать профиль"
+            app:drawableLeftCompat="@drawable/ic_edit_profile" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textColor="@color/color_white"
+            android:layout_marginTop="15dp"
+            android:textSize="19sp"
+            android:text="Поменять пароль"
+            android:gravity="center|left"
+            android:drawablePadding="20dp"
+            app:drawableLeftCompat="@drawable/ic_edit_password" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="19sp"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/gray_dark"
+            android:text="Уведомления"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/notifications_switch"
+            android:theme="@style/Color1SwitchStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/color_white"
+            android:gravity="center|left"
+            android:textSize="22sp"
+            android:drawablePadding="20dp"
+            android:drawableLeft="@drawable/ic_notifications"
+            android:text="Уведомления" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="18dp"
+            android:textSize="19sp"
+            android:textColor="@color/gray_dark"
+            android:text="Регион" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/color_white"
+            android:gravity="center|start"
+            android:drawablePadding="20dp"
+            android:textSize="19sp"
+            android:text="@string/language"
+            app:drawableLeftCompat="@drawable/ic_languages" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textColor="@color/color_white"
+            android:layout_marginTop="15dp"
+            android:textSize="19sp"
+            android:gravity="center|start"
+            android:visibility="invisible"
+            android:drawablePadding="20dp"
+            android:text="Выйти из аккаунта"
+            app:drawableLeftCompat="@drawable/ic_logout" />
+
+
+    </LinearLayout>
+</ScrollView>

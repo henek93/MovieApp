@@ -8,6 +8,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
 
+
     <!-- fragment main -->
     <string name="adventure_movies">Приключенческие фильмы</string>
     <string name="criminals_movies">Криминальные фильмы</string>
@@ -29,4 +30,10 @@
     <string name="may_be_it_interested">Возможно тебя заинтересует:</string>
     <string name="favourite">Избранное:</string>
     <string name="poster">poster</string>
+    <string name="profile">Профиль</string>
+    <string name="language">Язык</string>
+    <string name="dark_mode">Тема</string>
+    <string name="enter_email">Введите электронную почту</string>
+    <string name="email">Email</string>
+    <string name="next">Далее</string>
 </resources>

@@ -14,7 +14,7 @@ class MovieFavouriteViewHolder(
     fun bind(movie: Movie) {
         with(binding) {
             twMovieName.text = movie.name
-            twGenres.text = movie.genres.joinToString(",")
+            twGenres.text = movie.genres.joinToString(",") { it.name }
             twRating.text = String.format("%.2f", movie.rating.rating)
 
             if (movie.rating.rating > 7.0) {
