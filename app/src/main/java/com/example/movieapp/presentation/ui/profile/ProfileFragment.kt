@@ -4,24 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.movieapp.databinding.FragmentProfileBinding
-
-import com.example.movieapp.presentation.ui.main.MainFragment
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
 
-//    private val  notificationsViewModel by lazy {
-//        ViewModelProvider(this)[ProfileViewModel::class.java]
-//    }
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private val viewModel by lazy {
+        ViewModelProvider(this)[ProfileViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,14 +28,43 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textNotifications
-//
-//        notificationsViewModel.getListMovie()
-//
-//        notificationsViewModel.listMovie.observe(viewLifecycleOwner){
-//            textView.text = it.get(0).name
-//        }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.usernameTextView.setOnClickListener {
+            findNavController().navigate(
+                ProfileFragmentDirections.actionProfileFragmentToSignInFragment()
+            )
+        }
+
+        binding.twSignOut.setOnClickListener {
+            viewModel.signOut()
+
+        }
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewModel.user.observe(viewLifecycleOwner){
+            if (it != null){
+               viewModel.getUserInfo()
+                binding.twSignOut.isVisible = true
+            }else{
+                binding.twSignOut.isVisible = false
+                binding.usernameTextView.text = "Войти в аккаунт"
+                binding.twEmail.text = ""
+            }
+        }
+
+        viewModel.userInfo.observe(viewLifecycleOwner){
+            with(binding){
+                usernameTextView.text = "${it.name} ${it.lastName}"
+                twEmail.text = it.email
+            }
+        }
     }
 
     override fun onDestroyView() {
