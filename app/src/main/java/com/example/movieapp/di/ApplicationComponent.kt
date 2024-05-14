@@ -28,6 +28,7 @@ interface ApplicationComponent {
     fun inject(actorFragment: ActorFragment)
     fun inject(application: MovieApplication)
 
+
     @Component.Factory
     interface Factory{
 

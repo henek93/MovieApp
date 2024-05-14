@@ -36,4 +36,12 @@
     <string name="enter_email">Введите электронную почту</string>
     <string name="email">Email</string>
     <string name="next">Далее</string>
+    <string name="signin">Войти</string>
+
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_last_name">Введите фамилию</string>
+    <string name="enter_age">Введите возраст</string>
+    <string name="registrait">Зарегистрироваться</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="enter_in_account">Вход в аккаунт</string>
 </resources>

@@ -12,9 +12,7 @@ class FavouriteViewModel @Inject constructor(
     private val deleteMovieFromDbUseCase: DeleteMovieFromDbUseCase
 ) : ViewModel() {
 
-
-    val favouriteMovies =
-        getListFavouriteMovieUseCase.getListFavouriteMovie()
+    val favouriteMovies = getListFavouriteMovieUseCase.getListFavouriteMovie()
 
     fun deleteMovieFromDb(movieId: Int) {
         viewModelScope.launch {

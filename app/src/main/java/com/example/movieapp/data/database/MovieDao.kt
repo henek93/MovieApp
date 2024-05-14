@@ -20,4 +20,7 @@ interface MovieDao {
 
     @Query("SELECT * FROM favouriteMovies WHERE id=:movieId LIMIT 1")
     suspend fun getMovieFromDb(movieId: Int): MovieDbModel?
+
+    @Query("DELETE FROM favouriteMovies")
+    suspend fun deleteMoviesFromDb()
 }

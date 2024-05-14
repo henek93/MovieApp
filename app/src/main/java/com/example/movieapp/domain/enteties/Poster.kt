@@ -3,7 +3,7 @@ package com.example.movieapp.domain.enteties
 import java.io.Serializable
 
 data class Poster(
-    val url: String
+    val url: String = ""
 ): Serializable {
 
     companion object{
